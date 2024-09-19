@@ -1,48 +1,14 @@
-# Core Java Concepts
+# 1.1.2 Data Types and Variables
 
 <!-- TOC -->
-* [Core Java Concepts](#core-java-concepts)
-  * [1. Syntax and Semantics](#1-syntax-and-semantics)
-    * [1.1 Basic Structure of a Java Program](#11-basic-structure-of-a-java-program)
-    * [1.2 Java Naming Conventions](#12-java-naming-conventions)
-  * [2. Data Types and Variables](#2-data-types-and-variables)
-    * [2.1 Primitive Data Types](#21-primitive-data-types)
-      * [Primitive Data Types in Java – FAQs](#primitive-data-types-in-java--faqs)
-    * [2.2 Reference data types or Non-Primitive Data Type](#22-reference-data-types-or-non-primitive-data-type)
-      * [Reference Data Types in Java – FAQs](#reference-data-types-in-java--faqs)
-    * [2.3 Variable declaration and initialization](#23-variable-declaration-and-initialization)
-      * [Variable declaration and initialization in Java – FAQs](#variable-declaration-and-initialization-in-java--faqs)
+
+* [1.1.2 Data Types and Variables](#112-data-types-and-variables)
+    * [1.1.2.1 Primitive Data Types](#1121-primitive-data-types)
+        * [Primitive Data Types in Java – FAQs](#primitive-data-types-in-java--faqs)
+    * [1.1.2.2 Reference data types or Non-Primitive Data Type](#1122-reference-data-types-or-non-primitive-data-type)
+        * [Reference Data Types in Java – FAQs](#reference-data-types-in-java--faqs)
+
 <!-- TOC -->
-
-## 1. Syntax and Semantics
-
-### 1.1 Basic Structure of a Java Program
-
-A basic Java program consists of several elements including a class definition, a main method, and statements inside the
-main method. Here's an example:
-
-```java
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-
-- **Class Definition**: `public class HelloWorld` denotes a class named HelloWorld.
-- **Main Method**: `public static void main(String[] args)` is the entry point of the program.
-- **Method Call**: `System.out.println("Hello, World!");` prints text to the console.
-
-### 1.2 Java Naming Conventions
-
-Java naming conventions enhance code readability and maintainability. Some key conventions include:
-
-- **Class Names**: Should be nouns in PascalCase (e.g., HelloWorld, Employee).
-- **Method Names**: Should be verbs in camelCase (e.g., calculateSalary, printHello).
-- **Variable Names**: Should be in camelCase (e.g., employeeName, totalAmount).
-- **Constant Names**: Should be in UPPERCASE with underscores separating words (e.g., PI, MAX_VALUE).
-
-## 2. Data Types and Variables
 
 Java is statically typed and also a strongly typed language because, in Java, each type of data (such as integer,
 character, hexadecimal, packed decimal, and so forth) is predefined as part of the programming language and all
@@ -56,9 +22,9 @@ and circumstances to cover up all test cases. Java has two categories in which d
 1. **Primitive Data Type**: such as boolean, char, int, short, byte, long, float, and double
 2. **Non-Primitive Data Type or Object Data type**: such as String, Array, etc.
 
-![image](resource/images/Java-Data-Types.png)
+![image](../../resource/images/Java-Data-Types.png)
 
-### 2.1 Primitive Data Types
+## 1.1.2.1 Primitive Data Types
 
 Java provides eight primitive data types to store simple values:
 
@@ -196,7 +162,7 @@ double doubleMax = Double.MAX_VALUE;  // 1.7976931348623157E308
 | float   | IEEE 754 floating point | 0.0     | 32 bits | 1.23e100f , -1.23e-100f , .3f ,3.14F        | upto 7 decimal digits                                  |
 | double  | IEEE 754 floating point | 0.0     | 64 bits | 1.23456e300d , -123456e-300d , 1e1d         | upto 16 decimal digits                                 |
 
-#### Primitive Data Types in Java – FAQs
+### Primitive Data Types in Java – FAQs
 
 1. **What are the eight primitive data types in Java?**
 
@@ -290,7 +256,7 @@ The eight primitive data types in Java are:
 
 ---
 
-### 2.2 Reference data types or Non-Primitive Data Type
+## 1.1.2.2 Reference data types or Non-Primitive Data Type
 
 The Reference Data Types will contain a memory address of variable values because the reference types won’t store the
 variable value directly in memory. They are strings, objects, arrays, etc.
@@ -472,7 +438,7 @@ These types store references to memory locations and can encapsulate more comple
 compared to primitive data types. Understanding and using these types effectively is crucial for proficient Java
 programming.
 
-#### Reference Data Types in Java – FAQs
+### Reference Data Types in Java – FAQs
 
 **General Understanding**
 
@@ -604,266 +570,3 @@ programming.
       You can save this content into a file named README.md for easy reference and sharing.
 
 ---
-
-### 2.3 Variable declaration and initialization
-
-Variable in Java is a data container that stores the data values during Java program execution. Every variable is
-assigned data type which designates the type and quantity of value it can hold. Variable is a memory location name of
-the data. The Java variables have mainly three types : Local, Instance and Static.
-
-In order to use a variable in a program you to need to perform 2 steps
-
-1. Variable Declaration
-2. Variable Initialization
-
-1.- **Variable Declaration**
-
-Variable declaration is the process of defining a variable and specifying its type. This tells the compiler to allocate
-memory for the variable.
-
-```java
-// Syntax
-// type variableName;
-int age;
-double salary;
-String name;
-```
-
-2.- **Variable Initialization**
-
-Variable initialization is the process of assigning an initial value to a variable. Initialization can happen at the
-time of declaration or later in the code.
-
-```java
-// Syntax
-// type variableName;
-int age = 25;
-double salary = 50000.0;
-String name = "Alice";
-
-// Later Initialization
-int age;
-age =25;
-
-double salary;
-salary =50000.0;
-
-String name;
-name ="Alice";
-```
-
-**Types of variables**
-
-In Java, there are three types of variables:
-
-1. Local Variables:
-
-    * Declared inside a method, constructor, or block.
-    * Must be initialized before use.
-    * Scope is limited to the block in which they are declared.
-    * **Scope**: Within the block or method where declared.
-    * **Lifetime**: Exists during the execution of the block or method.
-
-2. Instance Variables (Non-Static Fields)
-
-    * Declared inside a class but outside any method, constructor, or block.
-    * Initialized to default values if not explicitly initialized.
-    * Each instance of the class has its own copy.
-    * **Scope**: Within the entire class, but accessible through instances.
-    * **Lifetime**: Exists as long as the object exists.
-
-3. Static Variables (Class Variables)
-
-    * Declared with the static keyword inside a class but outside any method, constructor, or block.
-    * Initialized to default values if not explicitly initialized.
-    * Shared among all instances of the class.
-    * **Scope**: Within the entire class, accessible through the class name.
-    * **Lifetime**: Exists for the duration of the program.
-
-**Example**
-
-```java
-public class VariableExample {
-    // Instance variable
-    int instanceVar;
-
-    // Static variable
-    static int staticVar;
-
-    public void method() {
-        // Local variable
-        int localVar = 10;
-        System.out.println("Local variable: " + localVar);
-    }
-}
-```
-
-**Best Practices**
-
-1. **Use Descriptive Names**: Use meaningful variable names that describe the purpose of the variable.
-
-```java
-int employeeAge;
-double monthlySalary;
-```
-
-2. **Initialize Variables**: Always initialize variables before use to avoid runtime errors.
-
-```java
-int count = 0;
-```
-
-3. **Minimize Scope**: Declare variables in the smallest scope possible to improve readability and maintainability.
-
-```java
-for(int i = 0;
-i< 10;i++){
-        System.out.
-
-println(i);
-}
-```
-
-4. **Use Constants**: Use the final keyword to declare constants.
-
-```java
-final int MAX_USERS = 100;
-```
-
-5. **Avoid Magic Numbers**: Use named constants instead of hardcoding values.
-
-```java
-final int MAX_USERS = 100;
-int users = MAX_USERS;
-```
-
-6. **Consistent Naming Conventions**: Follow standard naming conventions (e.g., camelCase for variables and methods,
-   PascalCase for classes).
-
-```java
-int userAge;
-double accountBalance;
-```
-
-#### Variable declaration and initialization in Java – FAQs
-
-1. **What is a variable in Java?**
-
-A variable in Java is a container that holds data that can be changed during the execution of a program. It has a data
-type, a name, and a value.
-
-2. **How do you declare a variable in Java?**
-
-To declare a variable in Java, specify the data type followed by the variable name.
-
-```java
-int age;
-double salary;
-String name;
-```
-
-3. **How do you initialize a variable in Java?**
-
-To initialize a variable in Java, assign it an initial value at the time of declaration or later in the code.
-
-```java
-int age = 25; // initialization at declaration
-age =30; // later initialization
-```
-
-4. **What are the different types of variables in Java?**
-
-    * Local Variables: Declared inside a method, constructor, or block.
-    * Instance Variables: Declared inside a class but outside any method, constructor, or block.
-    * Static Variables: Declared with the static keyword inside a class but outside any method, constructor, or block.
-
-5. **What is the scope of a local variable in Java?**
-
-The scope of a local variable is limited to the block, method, or constructor in which it is declared.
-
-6. **What happens if you try to use an uninitialized local variable in Java?**
-
-Using an uninitialized local variable in Java will result in a compile-time error.
-
-7. **Can you declare multiple variables of the same type in a single line?**
-
-Yes, you can declare multiple variables of the same type in a single line by separating them with commas.
-
-```java
-int a = 1, b = 2, c = 3;
-```
-
-8. **What is the default value of an instance variable in Java?**
-
-Instance variables are automatically initialized to default values if not explicitly initialized:
-
-* int : 0
-* double : 0.0
-* boolean : false
-* String : null
-
-9. **Can you change the value of a final variable in Java?**
-
-No, you cannot change the value of a final variable once it has been initialized. It makes the variable a constant.
-
-10. How do you declare a constant in Java?
-
-To declare a constant in Java, use the final keyword.
-
-```java
-final int MAX_USERS = 100;
-```
-
-11. **What is the difference between an instance variable and a static variable?**
-
-    * **Instance Variable**: Each object of the class has its own copy. Declared without the static keyword.
-    * **Static Variable**: Shared among all instances of the class. Declared with the static keyword.
-
-12. **What is variable shadowing in Java?**
-
-Variable shadowing occurs when a local variable in a method has the same name as an instance variable. The local
-variable "shadows" the instance variable within the scope of the method.
-
-```java
-public class Example {
-    int x = 10; // instance variable
-
-    public void method() {
-        int x = 5; // local variable
-        System.out.println(x); // prints 5, the local variable shadows the instance variable
-    }
-}
-```
-
-13. What are the naming conventions for variables in Java?
-
-    * Use camelCase for variable names.
-    * Begin with a letter, underscore, or dollar sign.
-    * Followed by letters, digits, underscores, or dollar signs.
-    * Avoid using reserved keywords.
-
-14. What is the difference between declaration, initialization, and assignment?
-
-    * Declaration: Specifies the data type and name of the variable.
-    * Initialization: Assigns an initial value to the variable at the time of declaration.
-    * Assignment: Assigns or reassigns a value to a variable after it has been declared.
-
-```java
-int age; // declaration
-age = 25; // assignment
-int year = 2021; // declaration and initialization
-year = 2022; // reassignment
-```
-
-15. How do you declare and initialize a multidimensional array in Java?
-
-```java
-// Declaration and initialization
-int[][] matrix = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
-        };
-```
-
-

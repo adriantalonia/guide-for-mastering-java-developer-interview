@@ -1,4 +1,4 @@
-package _02_data_types_and_variables._02_1_primitve_data_types;
+package _1_1_java_basics._1_1_2_data_types_and_variables._1_primitive_data_types;
 
 public class PrimitiveDataTypeExamples {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package _02_data_types_and_variables._02_2_reference_data_types;
+package _1_1_java_basics._1_1_2_data_types_and_variables._2_reference_data_types;
 
 public class ReferenceDataTypesExamples {
 
