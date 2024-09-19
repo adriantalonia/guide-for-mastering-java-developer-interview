@@ -8,6 +8,7 @@
     * [3.3 Logical operators (&&, ||, !)](#33-logical-operators---)
     * [3.4 Bitwise operators (&, |, ^, ~, <<, >>, >>>)](#34-bitwise-operators-------)
     * [3.5 Assignment operators (=, +=, -=, *=, /=, %=)](#35-assignment-operators-------)
+    * [3.5 Unary Operators (+, -, ++, --)](#35-unary-operators-------)
 
 <!-- TOC -->
 
@@ -43,7 +44,7 @@ These operators are used to perform basic mathematical operations.
 
 **Example:**
 
-```
+```java
 int a = 10;
 int b = 5;
 int sum = a + b; // 15
@@ -70,7 +71,7 @@ These operators compare two values and return a boolean result.
 
 **Example:**
 
-```
+```java
 int a = 10;
 int b = 5;
 boolean isEqual = (a == b); // false
@@ -88,7 +89,7 @@ These operators are used to combine multiple boolean expressions.
 
 **Example:**
 
-```
+```java
 boolean a = true;
 boolean b = false;
 boolean resultAnd = a && b; // false
@@ -112,7 +113,7 @@ These operators perform operations on individual bits of integer types.
 
 **Example:**
 
-```
+```java
 int a = 5; // 0101 in binary
 int b = 3; // 0011 in binary
 int resultAnd = a & b; // 0001 (1 in decimal)
@@ -122,3 +123,60 @@ int resultXor = a ^ b; // 0110 (6 in decimal)
 
 ### 3.5 Assignment operators (=, +=, -=, *=, /=, %=)
 
+These operators are used to assign values to variables.
+
+| Operator | Description         | Example |
+|----------|---------------------|---------|
+| =        | Simple assignment   | a = b   |
+| +=       | Add and assign      | a += b  |
+| -=       | Subtract and assign | a -= b  |
+| *=       | Multiply and assign | a *= b  |
+| /=       | Divide and assign   | a /= b  |
+| %=       | Modulus and assign  | a %= b  |
+
+**Example:**
+
+```java
+int a = 10;
+a +=5; // a is now 15
+a -=3; // a is now 12
+```
+
+### 3.6 Unary Operators (+, -, ++, --)
+
+These operators operate on a single operand.
+
+| Operator | Description | Example    |
+|----------|-------------|------------|
+| +        | Unary plus  | +a         |
+| -        | Unary minus | -a         |
+| ++       | Increment   | ++a or a++ |
+| --       | Decrement   | --a or a-- |
+
+**Example:**
+
+```java
+int a = 5;
+a++; // a is now 6
+++a; // a is now 7
+a--; // a is now 6
+--a; // a is now 5
+```
+
+### 3.7 Ternary Operator (? : )
+
+This is a shorthand form of the if-else statement.
+
+**Syntax**
+
+```
+condition ? expression1 : expression2
+```
+
+**Example:**
+
+```java
+int a = 10;
+int b = 5;
+int max = (a > b) ? a : b; // max is 10
+```
