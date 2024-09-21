@@ -31,7 +31,7 @@
 
 ---
 
-## [1.2 Object-Oriented Programming (OOP)]() 🔗
+## [1.2 Object-Oriented Programming (OOP)](src/_1_2_object_oriented_programming/README.md) 🔗
 
 **1.2.1 Classes and Objects**
 
