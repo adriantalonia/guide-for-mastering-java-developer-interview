@@ -30,7 +30,7 @@
 * Abstract classes and methods
 * Interfaces
 
-## [1.2.6 Interfaces and Abstract Classes](_1_2_6_interfaces_and_abstrac_classes/README.md) 🔗
+## [1.2.6 Interfaces and Abstract Classes](_1_2_6_interfaces_and_abstrac_classes/README.md) 🔗 
 
 * Defining and implementing interfaces
 * Abstract class vs Interface

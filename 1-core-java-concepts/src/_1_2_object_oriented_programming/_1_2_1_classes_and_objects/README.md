@@ -20,6 +20,21 @@ instantiate classes is fundamental to object-oriented programming in Java.
       * [Objects](#objects)
       * [Declaring Objects (Also called instantiating a class)](#declaring-objects-also-called-instantiating-a-class)
       * [Ways to Create an Object of a Class](#ways-to-create-an-object-of-a-class)
+      * [Difference between Java Class and Objects](#difference-between-java-class-and-objects)
+      * [Class definition and instantiation - FAQs](#class-definition-and-instantiation---faqs)
+    * [1.2.1.2 Fields and Methods](#1212-fields-and-methods)
+      * [Key Concepts](#key-concepts)
+      * [Methods](#methods)
+        * [Method Declaration](#method-declaration)
+        * [Types of Methods](#types-of-methods)
+        * [Ways to Create Method](#ways-to-create-method)
+        * [Method Signature:](#method-signature)
+        * [Naming a Method](#naming-a-method)
+        * [Method Calling](#method-calling)
+        * [Passing Parameters to a method](#passing-parameters-to-a-method)
+        * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
+        * [Advantages to using methods](#advantages-to-using-methods)
+      * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
 <!-- TOC -->
 
 --- 
@@ -214,4 +229,367 @@ My breed,age and color are papillon,5,white
    // creating object of class Test
     Test t = new Test();
     ```
+2. **Using Class.forName(String className) method**
 
+   There is a pre-defined class in java.lang package with name Class. The forName(String className) method returns the
+   Class object associated with the class with the given string name. We have to give a fully qualified name for a
+   class. On calling the new Instance() method on this Class object returns a new instance of the class with the given
+   string name.
+    ```
+    // creating object of public class Test
+    // consider class Test present in com.p1 package
+    Test obj = (Test)Class.forName("com.p1.Test").newInstance();
+    ``` 
+
+3. **Using clone() method**
+
+   clone() method is present in the Object class. It creates and returns a copy of the object.
+    ```
+    // creating object of class Test
+    Test t1 = new Test();
+    // creating clone of above object
+    Test t2 = (Test)t1.clone();
+    ``` 
+
+4. **Deserialization**
+
+   De-serialization is a technique of reading an object from the saved state in a file. Refer to
+   Serialization/De-Serialization in Java
+    ```
+    FileInputStream file = new FileInputStream(filename);
+    ObjectInputStream in = new ObjectInputStream(file);
+    Object obj = in.readObject();
+    ``` 
+
+#### Difference between Java Class and Objects
+
+| **Class**                                                          | **Object**                                                   |
+|--------------------------------------------------------------------|--------------------------------------------------------------|
+| Class is the blueprint of an object. It is used to create objects. | An object is an instance of the class.                       |
+| No memory is allocated when a class is declared.                   | Memory is allocated as soon as an object is created.         |
+| A class is a group of similar objects.                             | An object is a real-world entity such as a book, car, etc.   |
+| Class is a logical entity.                                         | An object is a physical entity.                              |
+| A class can only be declared once.                                 | Objects can be created many times as per requirement.        |
+| An example of class can be a car.                                  | Objects of the class car can be BMW, Mercedes, Ferrari, etc. |
+
+#### Class definition and instantiation - FAQs
+
+1. **What is a class in Java?**
+    - A class in Java is a blueprint for creating objects. It defines the structure and behavior (attributes and
+      methods) that the objects created from the class will have.
+
+2. **How do you define a class in Java?**
+    - A class is defined using the class keyword, followed by the class name and a pair of curly braces containing the
+      class members (fields and methods). Example:
+   ```java
+   public class Car {
+        // fields and methods
+    }
+   ```
+3. **What is instantiation in the context of classes?**
+    - Instantiation is the process of creating an instance (object) of a class using the new keyword followed by the
+      class constructor. For example:
+   ```java
+   Car myCar = new Car("Toyota", "Corolla", 2020);
+   ```
+
+4. **What is the purpose of the new keyword?**
+    - The new keyword is used to create a new instance of a class. It allocates memory for the object and invokes the
+      class constructor to initialize it.
+
+5. **What is the difference between a class and an object?**
+    - A class is a blueprint for creating objects (i.e., a definition), whereas an object is an instance of a class (
+      i.e., a concrete entity). Classes do not occupy memory until instantiated, while objects do.
+
+--- 
+
+### 1.2.1.2 Fields and Methods
+
+In Java, fields and methods are integral parts of classes that define **the attributes (state)** and **behaviors (
+functionality)** of the objects created from those classes. Understanding these concepts is crucial for effective
+object-oriented programming.
+
+**Overview**
+
+- **Fields** (also known as attributes or instance variables) are variables defined within a class that hold the state
+  or data of an object.
+- **Methods** are functions defined in a class that specify the behaviors or actions that can be performed on the
+  objects of that class.
+
+#### Key Concepts
+
+**Fields**
+
+1. **Definition**: Fields are defined within a class and represent the properties or characteristics of an object. They
+   can hold data of various types (primitive or reference types).
+
+2. **Access Modifiers**: Fields can have access modifiers (`public`, `private`, `protected`, or package-private) that
+   control their visibility. This helps enforce encapsulation by restricting direct access to the fields.
+
+3. **Initialization**: Fields can be initialized at declaration, in constructors, or through methods.
+
+4. **Static Fields**: Fields can be declared as `static`, meaning they belong to the class rather than to any specific
+   instance. All instances of the class share static fields.
+
+**Methods**
+
+1. **Definition**: Methods are blocks of code that perform a specific task. They can manipulate the fields of the class
+   and return values.
+
+2. **Parameters and Return Types**: Methods can accept parameters and can return a value. If a method does not return a
+   value, its return type is specified as `void`.
+
+3. **Access Modifiers**: Similar to fields, methods can have access modifiers to control their visibility.
+
+4. **Method Overloading**: Multiple methods with the same name but different parameter lists can exist within a class.
+   This is known as method overloading.
+
+5. **Static Methods**: Methods can be declared as `static`, meaning they can be called on the class itself rather than
+   on instances of the class.
+
+#### Methods
+
+The method in Java or Methods of Java is a collection of statements that perform some specific tasks and return the
+result to the caller. A Java method can perform some specific tasks without returning anything. Java Methods allows us
+to reuse the code without retyping the code.
+
+* A method is like a function i.e. used to expose the behavior of an object.
+* It is a set of codes that perform a particular task.
+
+**Syntax of Method:**
+
+```
+<access_modifier> <return_type> <method_name>( list_of_parameters)
+{
+    //body
+}
+```
+
+**Advantage of Method:**
+
+* Code Reusability
+* Code Optimization
+
+##### Method Declaration
+
+In general, method declarations have 6 components:
+
+1. Modifier: It defines the access type of the method i.e. from where it can be accessed in your application. In Java,
+   there 4 types of access specifiers.
+    * **public**: It is accessible in all classes in your application.
+    * **protected**: It is accessible within the class in which it is defined and in its subclasses.
+    * **private**: It is accessible only within the class in which it is defined.
+    * **default**: It is declared/defined without using any modifier. It is accessible within the same class and package
+      within which its class is defined.
+
+2. **The return type**: The data type of the value returned by the method or void if does not return a value. It is
+   Mandatory in syntax.
+
+3. **Method Name**: the rules for field names apply to method names as well, but the convention is a little different.
+   It is
+   Mandatory in syntax.
+
+4. **Parameter list**: Comma-separated list of the input parameters is defined, preceded by their data type, within the
+   enclosed parenthesis. If there are no parameters, you must use empty parentheses (). It is Optional in syntax.
+
+5. **Exception list**: The exceptions you expect by the method can throw; you can specify these exception(s). It is
+   Optional
+   in syntax.
+
+6. **Method body**: it is enclosed between braces. The code you need to be executed to perform your intended operations.
+   It
+   is Optional in syntax.
+
+![image](../../resource/images/method_declaration.png)
+
+##### Types of Methods
+
+There are two types of methods in Java:
+
+1. **Predefined Method:**
+   In Java, predefined methods are the method that is already defined in the Java class libraries is known as predefined
+   methods. It is also known as the standard library method or built-in method. We can directly use these methods just
+   by calling them in the program at any point.
+
+2. **User-defined Method:**
+   The method written by the user or programmer is known as a user-defined method. These methods are modified according
+   to the requirement.
+
+##### Ways to Create Method
+
+There are two ways to create a method in Java:
+
+1. **Instance Method**: Access the instance data using the object name. Declared inside a class.
+
+**Syntax:**
+
+```
+// Instance Method
+void method_name(){
+  body // instance area
+}
+```
+
+2. **Static Method**: Access the static data using class name. Declared inside class with static keyword.
+
+**Syntax:**
+
+```
+//Static Method
+static void method_name(){
+  body // static area
+}
+```
+
+##### Method Signature:
+
+It consists of the method name and a parameter list (number of parameters, type of the parameters, and order of the
+parameters). The return type and exceptions are not considered as part of it.
+
+Method Signature of the above function:
+
+```
+ max(int x, int y) Number of parameters is 2, Type of parameter is int.
+```
+
+##### Naming a Method
+
+In Java language method name is typically a single word that should be a verb in lowercase or a multi-word, that begins
+with a verb in lowercase followed by an adjective, noun. After the first word, the first letter of each word should be
+capitalized.
+
+**Rules to Name a Method:**
+
+* While defining a method, remember that the method name must be a verb and start with a lowercase letter.
+* If the method name has more than two words, the first name must be a verb followed by an adjective or noun.
+* In the multi-word method name, the first letter of each word must be in uppercase except the first word. For example,
+* findSum, computeMax, setX, and getX.
+
+Generally, a method has a unique name within the class in which it is defined but sometimes a method might have the same
+name as other method names within the same class as **method overloading** is allowed in Java .
+
+##### Method Calling
+
+The method needs to be called for use its functionality. There can be three situations when a method is called:
+A method returns to the code that invoked it when:
+
+* It completes all the statements in the method.
+* It reaches a return statement.
+* Throws an exception.
+
+```java
+ class Addition {
+    // Initially taking sum as 0
+    // as we have not started computation
+    int sum = 0;
+
+    // Method
+    // To add two numbers
+    public int addTwoInt(int a, int b) {
+        // Adding two integer value
+        sum = a + b;
+        // Returning summation of two values
+        return sum;
+    }
+}
+
+class GFG {
+    // Main driver method
+    public static void main(String[] args) {
+        // Creating object of class 1 inside main() method
+        Addition add = new Addition();
+        // Calling method of above class
+        // to add two integer
+        // using instance created
+        int s = add.addTwoInt(1, 2);
+        // Printing the sum of two numbers
+        System.out.println("Sum of two integer values :" + s);
+    }
+}
+```
+
+**Output:**
+
+```
+Sum of two integer values :3
+```
+
+##### Passing Parameters to a method
+
+There are some cases when we don’t know the number of parameters to be passed or an unexpected case to use more
+parameters than declared number of parameters. In such cases we can use
+
+* Passing Array as an Argument
+* Passing Variable-arguments as an Argument
+* Method Overloading.
+
+##### Memory Allocation for Methods Calls
+
+Methods calls are implemented through a stack. Whenever a method is called a stack frame is created within the stack
+area and after that, the arguments passed to and the local variables and value to be returned by this called method are
+stored in this stack frame and when execution of the called method is finished, the allocated stack frame would be
+deleted. There is a stack pointer register that tracks the top of the stack which is adjusted accordingly.
+
+##### Advantages to using methods
+
+* **Reusability:** Methods allow you to write code once and use it many times, making your code more modular and easier
+  to maintain.
+* **Abstraction:** Methods allow you to abstract away complex logic and provide a simple interface for others to use.
+  This makes your code more readable and easier to understand.
+* **Improved readability:** By breaking up your code into smaller, well-named methods, you can make your code more
+  readable and easier to understand.
+* **Encapsulation:** Methods allow you to encapsulate complex logic and data, making it easier to manage and maintain.
+* **Separation of concerns:** By using methods, you can separate different parts of your code and assign different
+  responsibilities to different methods, improving the structure and organization of your code.
+* **Improved modularity:** Methods allow you to break up your code into smaller, more manageable units, improving the
+  modularity of your code.
+* **Improved testability:** By breaking up your code into smaller, more manageable units, you can make it easier to test
+  and debug your code.
+* **Improved performance:** By organizing your code into well-structured methods, you can improve performance by
+  reducing the amount of code that needs to be executed and by making it easier to cache and optimize your code.
+
+#### Fields and Methods in Java - FAQs
+
+1. **What is the difference between fields and methods in Java?**
+
+    - Fields represent the state or attributes of an object, while methods define the behaviors or actions that can be
+      performed on that object.
+
+2. **What are access modifiers, and why are they important?**
+
+    - Access modifiers (public, private, protected, and default) control the visibility of fields and methods. They are
+      important for encapsulation, allowing you to restrict access to certain parts of your code.
+
+3. **Can a field be static? What does that mean?**
+
+    - Yes, a field can be declared as static. This means it belongs to the class itself rather than to any specific
+      instance, and all instances share the same static field.
+
+4. **What is method overloading in Java?**
+
+    - Method overloading allows multiple methods in a class to have the same name but different parameter lists. This
+      enables methods to perform similar functions with different types or numbers of inputs.
+
+5. **What is the syntax for declaring a method in Java?**
+
+    - The syntax for declaring a method includes the access modifier, return type, method name, parameters (if any), and
+      the method body. For example:
+
+    ```
+    <access_modifier> <return_type> <method_name>(<parameter_list>) {
+    // method body
+    }
+    ```
+
+6. **What is the difference between instance methods and static methods?**
+
+    - Instance methods can access instance variables and require an instance of the class to be called, while static
+      methods
+      belong to the class itself and can be called without creating an instance.
+
+7. **What happens to memory allocation when a method is called?**
+
+    - When a method is called, a stack frame is created in the stack area to store the arguments, local variables, and
+      return value. This stack frame is deleted once the method execution is complete.
+
+--- 
