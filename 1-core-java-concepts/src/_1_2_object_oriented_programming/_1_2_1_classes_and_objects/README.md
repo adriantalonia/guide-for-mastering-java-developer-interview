@@ -35,6 +35,9 @@ instantiate classes is fundamental to object-oriented programming in Java.
         * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
         * [Advantages to using methods](#advantages-to-using-methods)
       * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
+    * [1.2.1.3 Constructors (default and parameterized)](#1213-constructors-default-and-parameterized)
+      * [Key Concepts](#key-concepts-1)
+      * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
 <!-- TOC -->
 
 --- 
@@ -592,4 +595,39 @@ deleted. There is a stack pointer register that tracks the top of the stack whic
     - When a method is called, a stack frame is created in the stack area to store the arguments, local variables, and
       return value. This stack frame is deleted once the method execution is complete.
 
---- 
+---
+
+### 1.2.1.3 Constructors (default and parameterized)
+
+Java constructors or constructors in Java is a terminology used to construct something in our programs. A constructor in
+Java is a special method that is used to initialize objects. The constructor is called when an object of a class is
+created. It can be used to set initial values for object attributes.
+
+#### Key Concepts
+
+1. **Definition of Constructors**
+
+- **Constructor**: A method with the same name as the class, which does not have a return type.
+- Constructors are automatically called when an object of the class is created.
+
+2. **Types of Constructors**
+    - **Default Constructor**: A constructor that does not take any parameters. If no constructors are defined, Java
+      provides a default constructor that initializes object fields to their default values.
+    - **Parameterized Constructor**: A constructor that takes one or more parameters. It allows the user to set initial
+      values for object attributes upon creation.
+
+3. **Constructor Overloading**
+    - You can have multiple constructors in the same class with different parameter lists (number or types of
+      parameters). This is known as constructor overloading.
+
+4. **Access Modifiers**
+    - Constructors can have access modifiers (`public`, `private`, etc.) that control visibility. A `private`
+      constructor is often used in singleton design patterns.
+
+> Note:  It is not necessary to write a constructor for a class. It is because the java compiler creates a default
+> constructor (constructor with no arguments) if your class doesn’t have any. 
+
+#### How Java Constructors are Different From Java Methods?
+* Constructors must have the same name as the class within which it is defined it is not necessary for the method in Java.
+* Constructors do not return any type while method(s) have the return type or void if does not return any value.
+* Constructors are called only once at the time of Object creation while method(s) can be called any number of times.

@@ -1,4 +1,4 @@
-# 🛠️ Guide for Mastering Java Developer Interview
+# ☕ Guide for Mastering Java Developer Interview
 
 This guide is designed to help you prepare for a Java developer interview by covering key concepts, tools, and
 technologies necessary to succeed. Whether you're focusing on core Java concepts or diving deep into frameworks like
