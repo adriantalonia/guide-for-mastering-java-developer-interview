@@ -38,6 +38,12 @@ instantiate classes is fundamental to object-oriented programming in Java.
     * [1.2.1.3 Constructors (default and parameterized)](#1213-constructors-default-and-parameterized)
       * [Key Concepts](#key-concepts-1)
       * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
+      * [Default Constructor](#default-constructor)
+      * [Parameterized Constructor](#parameterized-constructor)
+      * [Constructor Overloading](#constructor-overloading)
+      * [Private Constructor](#private-constructor)
+      * [Best Practices](#best-practices)
+      * [Constructors – FAQs](#constructors--faqs)
 <!-- TOC -->
 
 --- 
@@ -608,7 +614,7 @@ created. It can be used to set initial values for object attributes.
 1. **Definition of Constructors**
 
 - **Constructor**: A method with the same name as the class, which does not have a return type.
-- Constructors are automatically called when an object of the class is created.
+- **Constructors** are automatically called when an object of the class is created.
 
 2. **Types of Constructors**
     - **Default Constructor**: A constructor that does not take any parameters. If no constructors are defined, Java
@@ -625,9 +631,274 @@ created. It can be used to set initial values for object attributes.
       constructor is often used in singleton design patterns.
 
 > Note:  It is not necessary to write a constructor for a class. It is because the java compiler creates a default
-> constructor (constructor with no arguments) if your class doesn’t have any. 
+> constructor (constructor with no arguments) if your class doesn’t have any.
 
 #### How Java Constructors are Different From Java Methods?
-* Constructors must have the same name as the class within which it is defined it is not necessary for the method in Java.
+
+* Constructors must have the same name as the class within which it is defined it is not necessary for the method in
+  Java.
 * Constructors do not return any type while method(s) have the return type or void if does not return any value.
 * Constructors are called only once at the time of Object creation while method(s) can be called any number of times.
+
+#### Default Constructor
+
+A constructor that has no parameters is known as default the constructor. A default constructor is invisible. And if we
+write a constructor with no arguments, the compiler does not create a default constructor. It is taken out. It is being
+overloaded and called a parameterized constructor. The default constructor changed into the parameterized constructor.
+But Parameterized constructor can’t change the default constructor. The default constructor can be implicit or explicit.
+If we don’t define explicitly, we get an implicit default constructor. If we manually write a constructor, the implicit
+one is overridded.
+
+```java
+public class Dog {
+    private String name;
+    private int age;
+
+    // Default constructor
+    public Dog() {
+        name = "Unknown";
+        age = 0;
+    }
+
+    public void displayInfo() {
+        System.out.println("Dog Name: " + name);
+        System.out.println("Dog Age: " + age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog(); // Invokes the default constructor
+        myDog.displayInfo(); // Outputs: Dog Name: Unknown, Dog Age: 0
+    }
+}
+```
+
+> Note:  Default constructor provides the default values to the object like 0, null, etc. depending on the type.
+
+#### Parameterized Constructor
+
+A constructor that has parameters is known as parameterized constructor. If we want to initialize fields of the class
+with our own values, then use a parameterized constructor.
+
+```java
+public class Car {
+    private String make;
+    private String model;
+    private int year;
+
+    // Parameterized constructor
+    public Car(String make, String model, int year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    public void displayDetails() {
+        System.out.println("Car Make: " + make);
+        System.out.println("Car Model: " + model);
+        System.out.println("Car Year: " + year);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car("Toyota", "Corolla", 2020); // Invokes the parameterized constructor
+        myCar.displayDetails(); // Outputs the car details
+    }
+}
+```
+
+```
+Remember: Does constructor return any value?
+There are no “return value” statements in the constructor, but the constructor returns the current class instance. We
+can write ‘return’ inside a constructor. 
+```
+
+#### Constructor Overloading
+
+Now the most important topic that comes into play is the strong incorporation of OOPS with constructors known as
+constructor overloading. Just like methods, we can overload constructors for creating objects in different ways. The
+compiler differentiates constructors on the basis of the number of parameters, types of parameters, and order of the
+parameters.
+
+```java
+public class Book {
+    private String title;
+    private String author;
+    private double price;
+
+    // Default constructor
+    public Book() {
+        title = "Unknown";
+        author = "Unknown";
+        price = 0.0;
+    }
+
+    // Parameterized constructor
+    public Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }
+
+    public void displayInfo() {
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Price: " + price);
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        // Using default constructor
+        Book book1 = new Book();
+        book1.displayInfo(); // Outputs default values
+
+        // Using parameterized constructor
+        Book book2 = new Book("1984", "George Orwell", 15.99);
+        book2.displayInfo(); // Outputs: Title: 1984, Author: George Orwell, Price: 15.99
+    }
+}
+```
+
+#### Private Constructor
+
+Private constructors allow us to restrict the instantiation of a class. Simply put, they prevent the creation of class
+instances in any place other than the class itself.
+
+There are several patterns and benefits to restricting explicit class instantiation, and we’ll go through the most
+common ones in this tutorial:
+
+* The singleton pattern
+* Delegating constructors
+* Uninstantiable classes
+* The builder pattern
+
+```java
+public class Singleton {
+    private static Singleton instance;
+
+    // Private constructor
+    private Singleton() {
+    }
+
+    // Public method to provide access to the instance
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Singleton singleton = Singleton.getInstance();
+        System.out.println("Singleton instance created: " + singleton);
+    }
+}
+```
+
+#### Best Practices
+
+* **Use Constructors to Initialize Fields:** Always use constructors to initialize the fields of a class for better
+  object integrity.
+* **Constructor Overloading:** Utilize constructor overloading to provide multiple ways to instantiate a class.
+* **Keep Constructors Simple:** Avoid complex logic in constructors; keep them straightforward to ensure clarity.
+* **Document Your Constructors:** Use Javadoc comments to document what each constructor does, especially when using
+  parameterized constructors.
+
+#### Constructors – FAQs
+
+1. **What is a constructor in Java?**
+
+   A constructor is a special method that is automatically called when an object of a class is created. It initializes
+   the
+   object's attributes. Constructors have the same name as the class and do not have a return type.
+
+2. **What is the difference between a default constructor and a parameterized constructor?**
+
+    - **Default Constructor**: A constructor that does not take any parameters. If no constructors are defined in a
+      class,
+      Java provides a default constructor that initializes object fields to their default values (e.g., `null`, `0`,
+      `false`).
+
+    - **Parameterized Constructor**: A constructor that accepts parameters to allow the user to initialize an object
+      with
+      specific values at the time of creation.
+
+3. **Can a class have more than one constructor?**
+
+   Yes, a class can have multiple constructors with different parameter lists. This is known as **constructor
+   overloading**. Each constructor must have a unique signature (number or type of parameters).
+
+4. **What happens if I do not define a constructor in my class?**
+
+   If no constructors are defined in your class, Java automatically provides a default constructor that initializes all
+   member variables to their default values. However, if you define any constructor (default or parameterized), Java
+   does not provide the default constructor unless you explicitly define it.
+
+5. **Can a constructor return a value?**
+
+   No, constructors cannot return values, not even `void`. They are meant solely for initializing objects. If you need
+   to return a value, you should use a method instead.
+
+6. **How do I call one constructor from another constructor in the same class?**
+
+   You can call one constructor from another constructor in the same class using the `this()` keyword. This is known
+   as **constructor chaining**.
+
+```java
+public class Example {
+    private int value;
+
+    // Default constructor
+    public Example() {
+        this(0); // Calls the parameterized constructor with default value 0
+    }
+
+    // Parameterized constructor
+    public Example(int value) {
+        this.value = value;
+    }
+}
+```
+
+7. **Can a constructor be private?**
+
+   Yes, a constructor can be private. This is often used in design patterns like the Singleton pattern, where you want
+   to restrict the instantiation of a class to one object.
+
+8. **What is the purpose of the super() call in a constructor?**
+
+   The super() call is used to invoke the constructor of the parent class. This is particularly useful when you want to
+   initialize inherited fields in the subclass. It must be the first statement in the constructor.
+
+    ```java
+    public class Parent {
+        public Parent() {
+            System.out.println("Parent Constructor");
+        }
+    }
+    
+    public class Child extends Parent {
+        public Child() {
+            super(); // Calls the Parent constructor
+         System.out.println("Child Constructor");
+        }
+    }
+    ```
+
+9. **Is it possible to have a constructor without any parameters?**
+
+   Yes, a constructor without parameters is called a default constructor. It is used to create an object with default
+   values.
+
+10. **Can I use this keyword in a constructor?**
+
+    Yes, you can use this keyword in a constructor to refer to the current object. It is commonly used to
+    differentiate between class fields and parameters with the same name.
+
+---
