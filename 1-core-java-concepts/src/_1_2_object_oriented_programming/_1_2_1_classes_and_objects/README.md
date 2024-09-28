@@ -13,37 +13,39 @@ instantiate classes is fundamental to object-oriented programming in Java.
 ---
 
 <!-- TOC -->
+
 * [1.2.1 Classes and Objects](#121-classes-and-objects)
     * [1.2.1.1 Class definition and instantiation](#1211-class-definition-and-instantiation)
-      * [Class Definition or Declaration](#class-definition-or-declaration)
-      * [Instantiation](#instantiation)
-      * [Objects](#objects)
-      * [Declaring Objects (Also called instantiating a class)](#declaring-objects-also-called-instantiating-a-class)
-      * [Ways to Create an Object of a Class](#ways-to-create-an-object-of-a-class)
-      * [Difference between Java Class and Objects](#difference-between-java-class-and-objects)
-      * [Class definition and instantiation - FAQs](#class-definition-and-instantiation---faqs)
+        * [Class Definition or Declaration](#class-definition-or-declaration)
+        * [Instantiation](#instantiation)
+        * [Objects](#objects)
+        * [Declaring Objects (Also called instantiating a class)](#declaring-objects-also-called-instantiating-a-class)
+        * [Ways to Create an Object of a Class](#ways-to-create-an-object-of-a-class)
+        * [Difference between Java Class and Objects](#difference-between-java-class-and-objects)
+        * [Class definition and instantiation - FAQs](#class-definition-and-instantiation---faqs)
     * [1.2.1.2 Fields and Methods](#1212-fields-and-methods)
-      * [Key Concepts](#key-concepts)
-      * [Methods](#methods)
-        * [Method Declaration](#method-declaration)
-        * [Types of Methods](#types-of-methods)
-        * [Ways to Create Method](#ways-to-create-method)
-        * [Method Signature:](#method-signature)
-        * [Naming a Method](#naming-a-method)
-        * [Method Calling](#method-calling)
-        * [Passing Parameters to a method](#passing-parameters-to-a-method)
-        * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
-        * [Advantages to using methods](#advantages-to-using-methods)
-      * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
+        * [Key Concepts](#key-concepts)
+        * [Methods](#methods)
+            * [Method Declaration](#method-declaration)
+            * [Types of Methods](#types-of-methods)
+            * [Ways to Create Method](#ways-to-create-method)
+            * [Method Signature:](#method-signature)
+            * [Naming a Method](#naming-a-method)
+            * [Method Calling](#method-calling)
+            * [Passing Parameters to a method](#passing-parameters-to-a-method)
+            * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
+            * [Advantages to using methods](#advantages-to-using-methods)
+        * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
     * [1.2.1.3 Constructors (default and parameterized)](#1213-constructors-default-and-parameterized)
-      * [Key Concepts](#key-concepts-1)
-      * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
-      * [Default Constructor](#default-constructor)
-      * [Parameterized Constructor](#parameterized-constructor)
-      * [Constructor Overloading](#constructor-overloading)
-      * [Private Constructor](#private-constructor)
-      * [Best Practices](#best-practices)
-      * [Constructors – FAQs](#constructors--faqs)
+        * [Key Concepts](#key-concepts-1)
+        * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
+        * [Default Constructor](#default-constructor)
+        * [Parameterized Constructor](#parameterized-constructor)
+        * [Constructor Overloading](#constructor-overloading)
+        * [Private Constructor](#private-constructor)
+        * [Best Practices](#best-practices)
+        * [Constructors – FAQs](#constructors--faqs)
+
 <!-- TOC -->
 
 --- 
@@ -902,3 +904,30 @@ public class Example {
     differentiate between class fields and parameters with the same name.
 
 ---
+
+### 1.2.1.4 this keyword
+
+In Java, ‘this’ is a reference variable that refers to the current object, or can be said “this” in Java is a keyword
+that refers to the current object instance. It can be used to call current class methods and fields, to pass an instance
+of the current class as a parameter, and to differentiate between the local and instance variables. Using “this”
+reference can improve code readability and reduce naming conflicts.
+
+#### Key Concepts
+
+1. **Reference to Current Object**
+    - The `this` keyword allows you to refer to the current object in an instance method or constructor.
+
+2. **Distinguishing Instance Variables**
+    - When a method or constructor parameter has the same name as an instance variable, `this` is used to differentiate
+      between them.
+
+3. **Constructor Chaining**
+    - The `this()` syntax can be used to call another constructor in the same class, facilitating constructor chaining.
+
+4. **Passing Current Object**
+    - The `this` keyword can be passed as an argument to methods or constructors.
+
+5. **Static Context**
+    - The `this` keyword cannot be used in static methods or static contexts since they do not belong to any specific
+      instance.
+
