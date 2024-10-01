@@ -13,39 +13,44 @@ instantiate classes is fundamental to object-oriented programming in Java.
 ---
 
 <!-- TOC -->
-
 * [1.2.1 Classes and Objects](#121-classes-and-objects)
     * [1.2.1.1 Class definition and instantiation](#1211-class-definition-and-instantiation)
-        * [Class Definition or Declaration](#class-definition-or-declaration)
-        * [Instantiation](#instantiation)
-        * [Objects](#objects)
-        * [Declaring Objects (Also called instantiating a class)](#declaring-objects-also-called-instantiating-a-class)
-        * [Ways to Create an Object of a Class](#ways-to-create-an-object-of-a-class)
-        * [Difference between Java Class and Objects](#difference-between-java-class-and-objects)
-        * [Class definition and instantiation - FAQs](#class-definition-and-instantiation---faqs)
+      * [Class Definition or Declaration](#class-definition-or-declaration)
+      * [Instantiation](#instantiation)
+      * [Objects](#objects)
+      * [Declaring Objects (Also called instantiating a class)](#declaring-objects-also-called-instantiating-a-class)
+      * [Ways to Create an Object of a Class](#ways-to-create-an-object-of-a-class)
+      * [Difference between Java Class and Objects](#difference-between-java-class-and-objects)
+      * [Class definition and instantiation - FAQs](#class-definition-and-instantiation---faqs)
     * [1.2.1.2 Fields and Methods](#1212-fields-and-methods)
-        * [Key Concepts](#key-concepts)
-        * [Methods](#methods)
-            * [Method Declaration](#method-declaration)
-            * [Types of Methods](#types-of-methods)
-            * [Ways to Create Method](#ways-to-create-method)
-            * [Method Signature:](#method-signature)
-            * [Naming a Method](#naming-a-method)
-            * [Method Calling](#method-calling)
-            * [Passing Parameters to a method](#passing-parameters-to-a-method)
-            * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
-            * [Advantages to using methods](#advantages-to-using-methods)
-        * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
+      * [Key Concepts](#key-concepts)
+      * [Methods](#methods)
+        * [Method Declaration](#method-declaration)
+        * [Types of Methods](#types-of-methods)
+        * [Ways to Create Method](#ways-to-create-method)
+        * [Method Signature:](#method-signature)
+        * [Naming a Method](#naming-a-method)
+        * [Method Calling](#method-calling)
+        * [Passing Parameters to a method](#passing-parameters-to-a-method)
+        * [Memory Allocation for Methods Calls](#memory-allocation-for-methods-calls)
+        * [Advantages to using methods](#advantages-to-using-methods)
+      * [Fields and Methods in Java - FAQs](#fields-and-methods-in-java---faqs)
     * [1.2.1.3 Constructors (default and parameterized)](#1213-constructors-default-and-parameterized)
-        * [Key Concepts](#key-concepts-1)
-        * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
-        * [Default Constructor](#default-constructor)
-        * [Parameterized Constructor](#parameterized-constructor)
-        * [Constructor Overloading](#constructor-overloading)
-        * [Private Constructor](#private-constructor)
-        * [Best Practices](#best-practices)
-        * [Constructors – FAQs](#constructors--faqs)
-
+      * [Key Concepts](#key-concepts-1)
+      * [How Java Constructors are Different From Java Methods?](#how-java-constructors-are-different-from-java-methods)
+      * [Default Constructor](#default-constructor)
+      * [Parameterized Constructor](#parameterized-constructor)
+      * [Constructor Overloading](#constructor-overloading)
+      * [Private Constructor](#private-constructor)
+      * [Best Practices](#best-practices)
+      * [Constructors – FAQs](#constructors--faqs)
+    * [1.2.1.4 this keyword](#1214-this-keyword)
+      * [Key Concepts](#key-concepts-2)
+      * [Methods to use ‘this’ in Java](#methods-to-use-this-in-java)
+      * [Advantages of using ‘this’ reference](#advantages-of-using-this-reference)
+      * [Disadvantages of using ‘this’ reference](#disadvantages-of-using-this-reference)
+      * [Best Practices](#best-practices-1)
+      * [this Keyword – FAQs](#this-keyword--faqs)
 <!-- TOC -->
 
 --- 
@@ -931,3 +936,330 @@ reference can improve code readability and reduce naming conflicts.
     - The `this` keyword cannot be used in static methods or static contexts since they do not belong to any specific
       instance.
 
+#### Methods to use ‘this’ in Java
+
+Following are the ways to use the ‘this’ keyword in Java mentioned below:
+
+* Using the ‘this’ keyword to refer to current class instance variables.
+* Using this() to invoke the current class constructor
+* Using ‘this’ keyword to return the current class instance
+* Using ‘this’ keyword as the method parameter
+* Using ‘this’ keyword to invoke the current class method
+* Using ‘this’ keyword as an argument in the constructor call
+
+1) **Using ‘this’ keyword to refer to current class instance variables**
+
+```java
+// Java code for using 'this' keyword to
+// refer current class instance variables
+class Test {
+    int a;
+    int b;
+
+    // Parameterized constructor
+    Test(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    void display() {
+        // Displaying value of variables a and b
+        System.out.println("a = " + a + "  b = " + b);
+    }
+
+    public static void main(String[] args) {
+        Test object = new Test(10, 20);
+        object.display();
+    }
+}
+```
+
+2) **Using this() to invoke current class constructor**
+
+```java
+// Java code for using this() to
+// invoke current class constructor
+class Test {
+    int a;
+    int b;
+
+    // Default constructor
+    Test() {
+        this(10, 20);
+        System.out.println(
+                "Inside  default constructor \n");
+    }
+
+    // Parameterized constructor
+    Test(int a, int b) {
+        this.a = a;
+        this.b = b;
+        System.out.println(
+                "Inside parameterized constructor");
+    }
+
+    public static void main(String[] args) {
+        Test object = new Test();
+    }
+}
+```
+
+**Output:**
+
+```
+Inside parameterized constructor
+Inside  default constructor 
+```
+
+3) **Using ‘this’ keyword to return the current class instance**
+
+```java
+// Java code for using 'this' keyword
+// to return the current class instance
+class Test {
+    int a;
+    int b;
+
+    // Default constructor
+    Test() {
+        a = 10;
+        b = 20;
+    }
+
+    // Method that returns current class instance
+    Test get() {
+        return this;
+    }
+
+    // Displaying value of variables a and b
+    void display() {
+        System.out.println("a = " + a + "  b = " + b);
+    }
+
+    public static void main(String[] args) {
+        Test object = new Test();
+        object.get().display();
+    }
+}
+```
+
+**Output:**
+
+```
+a = 10  b = 20
+```
+
+4) **Using ‘this’ keyword as a method parameter**
+
+```java
+// Java code for using 'this'
+// keyword as method parameter
+class Test {
+    int a;
+    int b;
+
+    // Default constructor
+    Test() {
+        a = 10;
+        b = 20;
+    }
+
+    // Method that receives 'this' keyword as parameter
+    void display(Test obj) {
+        System.out.println("a = " + obj.a
+                + "  b = " + obj.b);
+    }
+
+    // Method that returns current class instance
+    void get() {
+        display(this);
+    }
+
+    // main function
+    public static void main(String[] args) {
+        Test object = new Test();
+        object.get();
+    }
+}
+```
+
+**Output:**
+
+```
+a = 10  b = 20
+```
+
+5) **Using ‘this’ keyword to invoke the current class method**
+
+```java
+// Java code for using this to invoke current
+// class method
+class Test {
+
+    void display() {
+        // calling function show()
+        this.show();
+
+        System.out.println("Inside display function");
+    }
+
+    void show() {
+        System.out.println("Inside show function");
+    }
+
+    public static void main(String args[]) {
+        Test t1 = new Test();
+        t1.display();
+    }
+}
+```
+
+**Output:**
+
+```
+Inside show function
+Inside display function
+```
+
+6) **Using ‘this’ keyword as an argument in the constructor call**
+
+```java
+// Java code for using this as an argument in constructor
+// call
+// Class with object of Class B as its data member
+class A {
+    B obj;
+
+    // Parameterized constructor with object of B
+    // as a parameter
+    A(B obj) {
+        this.obj = obj;
+
+        // calling display method of class B
+        obj.display();
+    }
+}
+
+class B {
+    int x = 5;
+
+    // Default Constructor that create an object of A
+    // with passing this as an argument in the
+    // constructor
+    B() {
+        A obj = new A(this);
+    }
+
+    // method to show value of x
+    void display() {
+        System.out.println("Value of x in Class B : " + x);
+    }
+
+    public static void main(String[] args) {
+        B obj = new B();
+    }
+}
+```
+
+**Output:**
+
+```
+Value of x in Class B : 5
+```
+
+#### Advantages of using ‘this’ reference
+
+There are certain advantages of using ‘this’ reference in Java as mentioned below:
+
+* It helps to distinguish between instance variables and local variables with the same name.
+* It can be used to pass the current object as an argument to another method.
+* It can be used to return the current object from a method.
+* It can be used to invoke a constructor from another overloaded constructor in the same class.
+
+#### Disadvantages of using ‘this’ reference
+
+Although ‘this’ reference comes with many advantages there are certain disadvantages of also:
+
+* Overuse of this can make the code harder to read and understand.
+* Using this unnecessarily can add unnecessary overhead to the program.
+* Using this in a static context results in a compile-time error.
+* Overall, this keyword is a useful tool for working with objects in Java, but it should be used judiciously and only
+  when
+* necessary.
+
+#### Best Practices
+
+1. **Use this for Clarity:** Use this when you need to distinguish between instance variables and parameters, especially
+   when they have the same name.
+
+2. **Constructor Chaining:** Utilize this() to call one constructor from another, which helps reduce redundancy and
+   improves
+   code readability.
+
+3. **Pass this Appropriately:** When passing the current object to methods or constructors, ensure that the receiving
+   method
+   is designed to accept the type being passed.
+
+4. Avoid Overusing this: While this can enhance clarity, overusing it when it is not necessary can make the code more
+   verbose.
+
+#### this Keyword – FAQs
+
+1. **What is the `this` keyword in Java?**
+
+   The `this` keyword in Java is a reference variable that refers to the current object. It is used within instance
+   methods or constructors to access instance variables and methods of the current object.
+
+    2. **How is the `this` keyword used in constructors?**
+
+       In constructors, the `this` keyword is commonly used to distinguish between instance variables and parameters
+       when
+       they have the same name. It helps to clarify that you are referring to the instance variable.
+
+       **Example**:
+
+        ```java
+        public class Person {
+       
+        private String name;
+ 
+             public Person(String name) {
+                 this.name = name; // 'this.name' refers to the instance variable
+             }
+         }
+         ```
+
+3. **Can the this keyword be used in static methods?**
+
+   No, the this keyword cannot be used in static methods because static methods belong to the class rather than any
+   specific instance of the class. Therefore, there is no current object to refer to.
+
+4. **What is constructor chaining, and how does this play a role in it?**
+
+   Constructor chaining is the practice of calling one constructor from another within the same class. The this() syntax
+   is used for this purpose. It must be the first statement in the constructor.
+
+   **Example**:
+
+    ```java
+    public class Person {
+        private String name;
+             public Person(String name) {
+                 this.name = name; // 'this.name' refers to the instance variable
+             }
+    }
+    ```
+
+6. **Is it mandatory to use this when the parameter name is the same as the instance variable name?**
+
+   No, it is not mandatory to use this when the parameter name is the same as the instance variable name. However, using
+   this enhances clarity and helps avoid confusion.
+    ```java
+   public class Car {
+    private String model;
+    public Car(String model) {
+        this.model = model; // Using 'this' for clarity
+            // model = model; // This would assign the parameter to itself, not the instance variable
+        }
+    }
+    ```
