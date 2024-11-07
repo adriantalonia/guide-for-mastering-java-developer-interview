@@ -37,6 +37,16 @@ allows positional access and insertion of elements.
       * [5. ArrayList Sort](#5-arraylist-sort)
   * [Advantages of Java ArrayList](#advantages-of-java-arraylist)
   * [Disadvantages of Java ArrayList](#disadvantages-of-java-arraylist)
+* [1.3.1.2 LinkedList](#1312-linkedlist)
+  * [How Does LinkedList work Internally?](#how-does-linkedlist-work-internally)
+  * [Constructors in the LinkedList](#constructors-in-the-linkedlist)
+  * [Performing Various Operations on LinkedList](#performing-various-operations-on-linkedlist)
+    * [1: Adding Elements](#1-adding-elements-1)
+    * [2: Changing Elements](#2-changing-elements-1)
+    * [3: Removing Elements](#3-removing-elements-1)
+    * [4: Iterating the LinkedList](#4-iterating-the-linkedlist)
+  * [Advantages of using LinkedList in Java](#advantages-of-using-linkedlist-in-java)
+  * [Disadvantages of using LinkedList in Java](#disadvantages-of-using-linkedlist-in-java)
 <!-- TOC -->
 
 ## List Interface in Java
@@ -865,5 +875,244 @@ after sorting list:
 * **Performance degradation**: ArrayList’s performance may degrade as the number of elements in the list increases,
   especially for operations such as searching for elements or inserting elements in the middle of the list.
 
+--- 
 
+# 1.3.1.2 LinkedList
 
+Linked List is a part of the Collection framework present in java.util package. This class is an implementation of the
+LinkedList data structure which is a linear data structure where the elements are not stored in contiguous locations and
+every element is a separate object with a data part and address part. The elements are linked using pointers and
+addresses. Each element is known as a node.
+
+The LinkedList is a versatile data structure, especially useful when you need constant-time insertions and deletions.
+
+## How Does LinkedList work Internally?
+
+Since a LinkedList acts as a dynamic array and we do not have to specify the size while creating it, the size of the
+list automatically increases when we dynamically add and remove items. And also, the elements are not stored in a
+continuous fashion. Therefore, there is no need to increase the size. Internally, the LinkedList is implemented using
+the doubly linked list data structure.
+
+The main difference between a normal linked list and a doubly LinkedList is that a doubly linked list contains an extra
+pointer, typically called the previous pointer, together with the next pointer and data which are there in the singly
+linked list.
+
+## Constructors in the LinkedList
+
+In order to create a LinkedList, we need to create an object of the LinkedList class. The LinkedList class consists of
+various constructors that allow the possible creation of the list. The following are the constructors available in this
+class:
+
+1. **LinkedList()**: This constructor is used to create an empty linked list. If we wish to create an empty LinkedList
+   with the name ll, then, it can be created as:
+
+```
+LinkedList ll = new LinkedList();
+```
+
+2. **LinkedList(Collection C)**: This constructor is used to create an ordered list that contains all the elements of a
+   specified collection, as returned by the collection’s iterator. If we wish to create a LinkedList with the name ll,
+   then, it can be created as:
+
+```
+LinkedList ll = new LinkedList(C);
+```
+
+**Below is the implementation of the above operations:**
+
+```java
+public class GFG {
+    public static void main(String args[]) {
+        // Creating object of the
+        // class linked list
+        LinkedList<String> ll = new LinkedList<String>();
+
+        // Adding elements to the linked list
+        ll.add("A");
+        ll.add("B");
+        ll.addLast("C");
+        ll.addFirst("D");
+        ll.add(2, "E");
+
+        System.out.println(ll);
+
+        ll.remove("B");
+        ll.remove(3);
+        ll.removeFirst();
+        ll.removeLast();
+
+        System.out.println(ll);
+    }
+}
+```
+
+**Output:**
+
+```
+[D, A, E, B, C]
+[A]
+```
+
+## Performing Various Operations on LinkedList
+
+1. Adding elements
+2. Updating elements
+3. Removing elements
+4. Iterating over elements
+5. To Array();
+6. Size();
+7. remove First();
+8. remove last();
+
+### 1: Adding Elements
+
+* **add(Object)**: This method is used to add an element at the end of the LinkedList.
+* **add(int index, Object)**: This method is used to add an element at a specific index in the LinkedList.
+
+```java
+public class GFG {
+    public static void main(String args[]) {
+        LinkedList<String> ll = new LinkedList<>();
+
+        ll.add("Geeks");
+        ll.add("Geeks");
+        ll.add(1, "For");
+
+        System.out.println(ll);
+    }
+}
+```
+
+**Output:**
+
+```
+[Geeks, For, Geeks]
+```
+
+### 2: Changing Elements
+
+After adding the elements, if we wish to change the element, it can be done using the **set**() method. Since a
+LinkedList
+is indexed, the element which we wish to change is referenced by the index of the element. Therefore, this method takes
+an index and the updated element which needs to be inserted at that index.
+
+```java
+public class GFG {
+    public static void main(String args[]) {
+        LinkedList<String> ll = new LinkedList<>();
+
+        ll.add("Geeks");
+        ll.add("Geeks");
+        ll.add(1, "Geeks");
+
+        System.out.println("Initial LinkedList " + ll);
+
+        ll.set(1, "For");
+
+        System.out.println("Updated LinkedList " + ll);
+    }
+}
+```
+
+**Output:**
+
+```
+Initial LinkedList [Geeks, Geeks, Geeks]
+Updated LinkedList [Geeks, For, Geeks]
+```
+
+### 3: Removing Elements
+
+- **remove(Object)**: This method is used to simply remove an object from the LinkedList. If there are multiple such
+  objects, then the first occurrence of the object is removed.
+- **remove(int index)**: Since a LinkedList is indexed, this method takes an integer value which simply removes the
+  element present at that specific index in the LinkedList. After removing the element and the indices of elements are
+  updated so do the object of LinkedList is updated giving a new List after the deletion of element/s.
+
+```java
+public class GFG {
+
+    public static void main(String args[]) {
+        LinkedList<String> ll = new LinkedList<>();
+
+        ll.add("Geeks");
+        ll.add("Geeks");
+        ll.add(1, "For");
+
+        System.out.println("Initial LinkedList " + ll);
+
+        // Function call
+        ll.remove(1);
+
+        System.out.println("After the Index Removal " + ll);
+
+        ll.remove("Geeks");
+
+        System.out.println("After the Object Removal " + ll);
+    }
+}
+```
+
+**Output:**
+
+```
+Initial LinkedList [Geeks, For, Geeks]
+After the Index Removal [Geeks, Geeks]
+After the Object Removal [Geeks]
+```
+
+### 4: Iterating the LinkedList
+
+There are multiple ways to iterate through LinkedList. The most famous ways are by using the basic for loop in
+combination with a get() method to get the element at a specific index and the advanced for-loop.
+
+```java
+public class GFG {
+
+    public static void main(String args[]) {
+        LinkedList<String> ll
+                = new LinkedList<>();
+
+        ll.add("Geeks");
+        ll.add("Geeks");
+        ll.add(1, "For");
+
+        // Using the Get method and the 
+        // for loop 
+        for (int i = 0; i < ll.size(); i++) {
+            System.out.print(ll.get(i) + " ");
+        }
+
+        System.out.println();
+
+        // Using the for each loop 
+        for (String str : ll)
+            System.out.print(str + " ");
+    }
+} 
+```
+
+**Output:**
+
+```
+Geeks For Geeks 
+Geeks For Geeks 
+```
+
+## Advantages of using LinkedList in Java
+
+1. **Dynamic size**: As with Vector, the size of a LinkedList can grow or shrink dynamically, so you don’t have to worry
+   about setting an initial size.
+2. **Efficient Insertions and Deletions**: LinkedList is an efficient data structure for inserting or deleting elements
+   in the middle of the list because you only need to change the links between elements, rather than shifting all
+   elements after the insertion or deletion point.
+3. **Flexible Iteration**: With a linked list, you can efficiently iterate through the list in either direction, since
+   each element has a reference to both its predecessor and successor elements.
+
+## Disadvantages of using LinkedList in Java
+
+* **Performance**: LinkedList has a slower performance than ArrayList when it comes to accessing individual elements.
+  This is because you need to traverse the list to reach the desired element, whereas with ArrayList, you can simply
+  access the desired element using an index.
+* **Memory overhead**: LinkedList requires more memory than ArrayList because each element requires additional memory
+  for the links to its predecessor and successor elements.
