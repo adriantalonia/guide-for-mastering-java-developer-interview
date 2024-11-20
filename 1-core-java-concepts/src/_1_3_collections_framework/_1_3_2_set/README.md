@@ -21,6 +21,13 @@ access elements by their index and also search elements in the list.
       * [Handling Custom Objects](#handling-custom-objects)
     * [Best Practices](#best-practices)
     * [FAQs - Interview questions](#faqs---interview-questions)
+  * [1.3.2.2 LinkedHashSet](#1322-linkedhashset)
+    * [Key Characteristics](#key-characteristics-1)
+    * [How It Works](#how-it-works)
+    * [Constructors](#constructors-1)
+    * [Common Operations](#common-operations)
+    * [Best Practices](#best-practices-1)
+    * [FAQs and Interview Questions](#faqs-and-interview-questions)
 <!-- TOC -->
 
 ## Key Characteristics of a Set
@@ -404,3 +411,149 @@ public class HashSetCustomObjects {
     more efficient than a List due to its constant-time performance for lookup operations.
 
 ---
+
+## 1.3.2.2 LinkedHashSet
+
+The LinkedHashSet is an ordered version of HashSet that maintains a doubly-linked List across all elements. When the
+iteration order is needed to be maintained this class is used. When iterating through a HashSet the order is
+unpredictable, while a LinkedHashSet lets us iterate through the elements in the order in which they were inserted. When
+cycling through LinkedHashSet using an iterator, the elements will be returned in the order in which they were inserted.
+
+The LinkedHashSet is a class in Java's Collections Framework that extends HashSet and implements the Set interface. It
+retains the order of elements based on their insertion order. This is achieved using a doubly-linked list that runs
+through all entries.
+
+### Key Characteristics
+
+- **Ordered**: Maintains the insertion order of elements. When iterating over a LinkedHashSet, elements are returned in
+  the order they were added.
+
+- **Unique Elements**: Like HashSet, it does not allow duplicate elements.
+
+- **Underlying Structure**: Combines a hash table with a linked list to maintain order without compromising on
+  performance.
+
+- **Performance**: Generally offers slightly lower performance than HashSet due to the overhead of maintaining the
+  linked list. However, basic operations like add, remove, and contains still run in constant time on average.
+
+- **Null Elements**: Allows a single null element.
+
+### How It Works
+
+- **Hash Table with Linked List**: Each element in a LinkedHashSet is stored in a hash table and linked to the previous
+  and next elements via a linked list. This enables maintaining insertion order.
+
+- **Iteration**: The linked list defines the iteration order, which is the order in which elements were inserted.
+
+### Constructors
+
+- **Default Constructor**:
+
+```java
+LinkedHashSet<E> linkedHashSet = new LinkedHashSet<>();
+```
+
+- **With Initial Capacity**:
+
+```java
+LinkedHashSet<E> linkedHashSet = new LinkedHashSet<>(initialCapacity);
+```
+
+- **With Initial Capacity and Load Factor**:
+
+```java
+LinkedHashSet<E> linkedHashSet = new LinkedHashSet<>(initialCapacity, loadFactor);
+```
+
+- **From Another Collection**:
+
+```java
+LinkedHashSet<E> linkedHashSet = new LinkedHashSet<>(collection);
+```
+
+### Common Operations
+
+```java
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+public class LinkedHashSetExample {
+    public static void main(String[] args) {
+        Set<String> linkedHashSet = new LinkedHashSet<>();
+
+        // Adding elements
+        linkedHashSet.add("One");
+        linkedHashSet.add("Two");
+        linkedHashSet.add("Three");
+
+        // Attempt to add a duplicate
+        linkedHashSet.add("One"); // Duplicate, will not be added
+
+        // Iterating over elements
+        System.out.println("LinkedHashSet maintains insertion order:");
+        for (String element : linkedHashSet) {
+            System.out.println(element);
+        }
+
+        // Checking for presence of an element
+        boolean containsTwo = linkedHashSet.contains("Two");
+        System.out.println("Contains 'Two': " + containsTwo);
+
+        // Removing an element
+        linkedHashSet.remove("Three");
+        System.out.println("After removing 'Three': " + linkedHashSet);
+    }
+}
+```
+
+### Best Practices
+
+- **Use When Order Matters**: Prefer LinkedHashSet over HashSet when you need to maintain the order of elements as they
+  were inserted.
+
+- **Performance Considerations**: Be aware of the slight performance overhead due to maintaining a linked list. If order
+  is not important, a HashSet might be more performant.
+
+- **Null Elements**: If nulls are expected, ensure that your logic handles them gracefully, as LinkedHashSet allows
+  exactly one null element.
+
+### FAQs and Interview Questions
+
+1. **What is a LinkedHashSet, and how does it differ from a HashSet?**
+
+   Answer: A LinkedHashSet is an ordered version of HashSet that maintains insertion order using a doubly-linked list.
+   Unlike HashSet, which does not guarantee order, LinkedHashSet ensures elements are iterated in the order they were
+   added.
+
+2. **How does LinkedHashSet maintain insertion order?**
+
+   Answer: It uses a combination of a hash table and a linked list. The linked list runs through all the elements in the
+   order they were inserted, thus maintaining insertion order during iteration.
+
+3. **What are the time complexities of basic operations in a LinkedHashSet?**
+
+   Answer: Basic operations like add, remove, and contains have constant time complexity on average, similar to HashSet,
+   due to the underlying hash table. However, there is an additional overhead due to the linked list.
+
+4. **Can a LinkedHashSet contain null elements?**
+
+   Answer: Yes, it can store a single null element.
+
+5. **Is LinkedHashSet synchronized? How can you make it thread-safe?**
+
+   Answer: LinkedHashSet is not synchronized. You can make it thread-safe by wrapping it with
+   Collections.synchronizedSet(new LinkedHashSet<>()).
+
+6. **When should you use a LinkedHashSet over a HashSet or TreeSet?**
+
+   Answer: Use a LinkedHashSet when you need to maintain insertion order without the sorting overhead of a TreeSet. If
+   order is not important, a HashSet might be more performant. Use TreeSet when a sorted order is required.
+
+7. **How do you convert a LinkedHashSet to a List?**
+
+   Answer: You can convert it using the constructor of ArrayList:
+    ```java
+    Set<String> set = new LinkedHashSet<>();
+    List<String> list = new ArrayList<>(set);
+    ```
+   
