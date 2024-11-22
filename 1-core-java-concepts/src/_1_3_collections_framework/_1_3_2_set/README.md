@@ -8,26 +8,28 @@ access elements by their index and also search elements in the list.
 ![image](../../resource/images/java-set-implementation.png)
 
 <!-- TOC -->
+
 * [1.3.2 Set](#132-set)
-  * [Key Characteristics of a Set](#key-characteristics-of-a-set)
-  * [Syntax](#syntax)
-    * [Common Implementations](#common-implementations)
-  * [Operations on the Set Interface](#operations-on-the-set-interface)
-  * [1.3.2.1 HashSet](#1321-hashset)
-    * [Key Characteristics](#key-characteristics)
-    * [How HashSet Works](#how-hashset-works)
-    * [Constructors](#constructors)
-    * [Basic Operations](#basic-operations)
-      * [Handling Custom Objects](#handling-custom-objects)
-    * [Best Practices](#best-practices)
-    * [FAQs - Interview questions](#faqs---interview-questions)
-  * [1.3.2.2 LinkedHashSet](#1322-linkedhashset)
-    * [Key Characteristics](#key-characteristics-1)
-    * [How It Works](#how-it-works)
-    * [Constructors](#constructors-1)
-    * [Common Operations](#common-operations)
-    * [Best Practices](#best-practices-1)
-    * [FAQs and Interview Questions](#faqs-and-interview-questions)
+    * [Key Characteristics of a Set](#key-characteristics-of-a-set)
+    * [Syntax](#syntax)
+        * [Common Implementations](#common-implementations)
+    * [Operations on the Set Interface](#operations-on-the-set-interface)
+    * [1.3.2.1 HashSet](#1321-hashset)
+        * [Key Characteristics](#key-characteristics)
+        * [How HashSet Works](#how-hashset-works)
+        * [Constructors](#constructors)
+        * [Basic Operations](#basic-operations)
+            * [Handling Custom Objects](#handling-custom-objects)
+        * [Best Practices](#best-practices)
+        * [FAQs - Interview questions](#faqs---interview-questions)
+    * [1.3.2.2 LinkedHashSet](#1322-linkedhashset)
+        * [Key Characteristics](#key-characteristics-1)
+        * [How It Works](#how-it-works)
+        * [Constructors](#constructors-1)
+        * [Common Operations](#common-operations)
+        * [Best Practices](#best-practices-1)
+        * [FAQs and Interview Questions](#faqs-and-interview-questions)
+
 <!-- TOC -->
 
 ## Key Characteristics of a Set
@@ -556,4 +558,142 @@ public class LinkedHashSetExample {
     Set<String> set = new LinkedHashSet<>();
     List<String> list = new ArrayList<>(set);
     ```
-   
+
+## 1.3.2.3 EnumSet
+
+EnumSet is a specialized implementation of the Set interface specifically designed for use with Java enum types. It is
+highly efficient and provides a compact and performance-optimized implementation for handling enum constants.
+
+### Key Characteristics
+
+- **Efficient Storage**: EnumSet is implemented as a bit vector, offering a fast and memory-efficient way to store enum
+  constants.
+
+- **All Elements Must Be of a Single Enum Type**: EnumSet can only hold enums from a single specified enum type.
+
+- **Ordered**: Maintains the natural order of enum constants, which is the order in which they are declared.
+
+- **Not Synchronized**: Like most collections, EnumSet is not synchronized and must be manually synchronized if accessed
+  by multiple threads concurrently.
+
+### How It Works
+
+- **Bit Vector Representation**: Internally, EnumSet uses a bit vector to represent the set of enum constants. Each bit
+  in the vector corresponds to an enum constant, allowing rapid operations like add, remove, and contains.
+
+- **Type Safety**: EnumSet is type-safe and ensures that only valid enum constants are added.
+
+### Constructors
+
+EnumSet does not have public constructors. Instead, it provides static factory methods to create instances:
+
+- **of()**: Creates an EnumSet with specified elements.
+
+```java
+EnumSet<Day> weekend = EnumSet.of(Day.SATURDAY, Day.SUNDAY);
+```
+
+- **allOf()**: Creates an EnumSet containing all elements of the specified enum type.
+
+```java
+EnumSet<Day> noDays = EnumSet.noneOf(Day.class);
+```
+
+- **noneOf()**: Creates an empty EnumSet of the specified enum type.
+
+```java
+EnumSet<Day> noDays = EnumSet.noneOf(Day.class);
+```
+
+- **range()**: Creates an EnumSet containing all the elements in the range between two specified elements.
+
+```java
+EnumSet<Day> workweek = EnumSet.range(Day.MONDAY, Day.FRIDAY);
+```
+
+- **complementOf()**: Creates an EnumSet containing all elements not present in the specified EnumSet.
+
+```java
+EnumSet<Day> nonWeekend = EnumSet.complementOf(weekend);
+```
+
+### Common Operations
+
+```java
+import java.util.EnumSet;
+import java.util.Set;
+
+public class EnumSetExample {
+    enum Day {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+    }
+
+    public static void main(String[] args) {
+        // Creating an EnumSet with specific values
+        Set<Day> weekend = EnumSet.of(Day.SATURDAY, Day.SUNDAY);
+
+        // Create an EnumSet with all values
+        Set<Day> allDays = EnumSet.allOf(Day.class);
+
+        // Create an empty EnumSet
+        Set<Day> noDays = EnumSet.noneOf(Day.class);
+
+        // Create an EnumSet with a range of values
+        Set<Day> workweek = EnumSet.range(Day.MONDAY, Day.FRIDAY);
+
+        // Create an EnumSet with complement of another EnumSet
+        Set<Day> nonWeekend = EnumSet.complementOf(weekend);
+
+        // Displaying EnumSets
+        System.out.println("Weekend: " + weekend);
+        System.out.println("All Days: " + allDays);
+        System.out.println("No Days: " + noDays);
+        System.out.println("Workweek: " + workweek);
+        System.out.println("Non-weekend: " + nonWeekend);
+    }
+}
+```
+
+### Best Practices
+
+- **Use for Enum Types**: Only use EnumSet for enum types, as it is specifically optimized for this use case.
+
+- **Performance Optimization**: Use EnumSet when performance and memory efficiency are critical, especially when working
+  with large numbers of enum constants.
+
+- **Type Safety**: Benefit from Java's type safety, which ensures that only valid enum constants are added to the set.
+
+### FAQs and Interview Questions
+
+1. **What is an EnumSet in Java, and how does it differ from other Set implementations?**
+
+   Answer: EnumSet is a specialized Set implementation designed for enum types. It differs from other Set
+   implementations by offering highly efficient storage and operations for enums, using a bit vector for representation.
+
+2. **How does EnumSet maintain order?**
+
+   Answer: EnumSet maintains the natural order of enum constants, which is the order they are declared in the enum type.
+
+3. **Can EnumSet contain elements from different enum types?**
+
+   Answer: No, an EnumSet can only contain elements from a single specified enum type.
+
+4. **What are the benefits of using EnumSet over other Set implementations?**
+
+   Answer: EnumSet provides efficient storage and fast operations for enum types, with minimal memory overhead. It is
+   type-safe and maintains the natural order of the enum constants.
+
+5. **Is EnumSet synchronized? How can you make it thread-safe?**
+
+   Answer: EnumSet is not synchronized. To make it thread-safe, you can wrap it with Collections.synchronizedSet(new
+   EnumSet<...>(...)).
+
+6. **How do you create an EnumSet that contains all elements except a given subset?**
+
+   Answer: You can use the complementOf() method to create an EnumSet that contains all elements not present in the
+   specified subset:
+    ```
+    EnumSet<Day> weekend = EnumSet.of(Day.SATURDAY, Day.SUNDAY);
+    EnumSet<Day> nonWeekend = EnumSet.complementOf(weekend);
+    ```
+--- 
