@@ -696,4 +696,152 @@ public class EnumSetExample {
     EnumSet<Day> weekend = EnumSet.of(Day.SATURDAY, Day.SUNDAY);
     EnumSet<Day> nonWeekend = EnumSet.complementOf(weekend);
     ```
+
 --- 
+
+## 1.3.2.4 TreeSet
+
+TreeSet is a class in Java's Collections Framework that implements the SortedSet interface. It stores elements in a
+sorted, ascending order and is based on a TreeMap internally, typically a Red-Black tree, which ensures that the set
+remains ordered.
+
+### Key Characteristics
+
+- **Sorted Order**: Elements in a TreeSet are stored in a natural ascending order according to their natural ordering or
+  by a specified comparator.
+
+- **NavigableSet**: It implements the NavigableSet interface, providing methods to navigate through the set (e.g.,
+  lower(), floor(), ceiling(), higher()).
+
+- **No Duplicates**: Like all Set implementations, TreeSet does not allow duplicate elements.
+
+- **Performance**: Provides O(log n) time complexity for the basic operations like add, remove, and contains, due to its
+  underlying Red-Black tree structure.
+
+- **Comparator**: By default, TreeSet relies on the natural ordering, but a custom comparator can be provided when the
+  set is constructed.
+
+- **No Nulls**: TreeSet does not allow null elements.
+
+### How It Works
+
+- **Red-Black Tree**: Internally, TreeSet uses a Red-Black tree to store elements in a sorted manner. This
+  self-balancing binary search tree ensures that operations like insertion, deletion, and lookup are efficient.
+
+- **Sorting**: Elements are sorted based on their natural ordering (Comparable) or by a Comparator provided at set
+  construction.
+
+### Constructors
+
+1. **Default Constructor:**
+
+```java
+TreeSet<E> treeSet = new TreeSet<>();
+```
+
+2. **With Comparator:**
+
+```java
+TreeSet<E> treeSet = new TreeSet<>(Comparator < E > comparator);
+```
+
+3. **From Another Collection:**
+
+```java
+TreeSet<E> treeSet = new TreeSet<>(Collection < E > collection);
+```
+
+4. **From Another SortedSet:**
+
+```java
+TreeSet<E> treeSet = new TreeSet<>(SortedSet < E > sortedSet);
+```
+
+### Common Operations
+
+```java
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.Iterator;
+
+public class TreeSetExample {
+    public static void main(String[] args) {
+        Set<Integer> treeSet = new TreeSet<>();
+
+        // Adding elements
+        treeSet.add(5);
+        treeSet.add(1);
+        treeSet.add(10);
+        treeSet.add(3);
+
+        System.out.println("TreeSet in Natural Order:");
+        System.out.println(treeSet);
+
+        // Checking for presence of an element
+        boolean containsFive = treeSet.contains(5);
+        System.out.println("Contains 5: " + containsFive);
+
+        // Removing an element
+        treeSet.remove(10);
+        System.out.println("After removing 10: " + treeSet);
+
+        // Accessing the first and last elements
+        Integer first = ((TreeSet<Integer>) treeSet).first();
+        Integer last = ((TreeSet<Integer>) treeSet).last();
+        System.out.println("First Element: " + first);
+        System.out.println("Last Element: " + last);
+
+        // Iterating in descending order
+        System.out.println("Descending Order:");
+        Iterator<Integer> descendingIterator = ((TreeSet<Integer>) treeSet).descendingIterator();
+        while (descendingIterator.hasNext()) {
+            System.out.println(descendingIterator.next());
+        }
+    }
+}
+```
+
+### Best Practices
+
+- **Use for Sorted Data**: Prefer TreeSet when you need to store elements in a sorted order and efficiently perform
+  range searches or order-sensitive operations.
+
+- **Comparator Usage**: Use a custom comparator if you need a specific order other than the natural ordering of
+  elements.
+
+- **No Nulls**: Avoid inserting null elements into a TreeSet, as it will throw a NullPointerException.
+
+### FAQs and Interview Questions
+
+1. **What is a TreeSet in Java, and how does it differ from a HashSet?**
+
+   Answer: TreeSet is a sorted set that stores elements in a natural or custom order using a tree data structure. Unlike
+   HashSet, which is unordered, TreeSet maintains elements in sorted order and has higher time complexity for basic
+   operations.
+
+2. **How does TreeSet maintain order?**
+
+   Answer: TreeSet uses a Red-Black tree, a self-balancing binary search tree, to maintain elements in sorted order.
+
+3. **Can TreeSet store null elements?**
+
+   Answer: No, TreeSet does not allow null elements. Attempting to add null will result in a NullPointerException.
+
+4. **What is the time complexity of basic operations in a TreeSet?**
+
+   Answer: The time complexity for basic operations like add, remove, and contains is O(log n) due to the underlying
+   Red-Black tree structure.
+
+5. **How can you iterate over a TreeSet in descending order?**
+
+   Answer: You can use the descendingIterator() method to iterate over the elements in descending order.
+
+6. **When should you use a TreeSet over a LinkedHashSet or EnumSet?**
+
+   Answer: Use TreeSet when you need elements to be stored and accessed in a sorted order. Use LinkedHashSet when you
+   need to maintain insertion order without sorting, and use EnumSet for efficient storage of enum constants.
+
+
+
+
+
