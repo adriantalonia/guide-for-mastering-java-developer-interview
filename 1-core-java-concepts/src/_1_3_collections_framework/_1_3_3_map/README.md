@@ -157,3 +157,22 @@ Answer: Overriding equals() and hashCode() ensures that keys are compared correc
 properly in hash-based maps, preventing issues like duplicate keys or poor performance.
 
 --- 
+
+# 1.3.3.1 HashMap
+
+HashMap is a part of the Java Collections Framework and provides a basic implementation of the Map interface. It is used
+to store data in the form of key-value pairs, where each key is unique and maps to a specific value.
+
+## Key Characteristics
+
+- **Key-Value Storage**: Stores elements as key-value pairs, allowing efficient retrieval of values by their keys.
+
+- **Hash Table Based**: Internally uses a hash table to store entries, achieving average time complexity of O(1) for
+  operations like put, get, and remove.
+
+- **Unordered**: Does not guarantee any specific order of elements. The iteration order is not constant over time.
+
+- **Allows Nulls**: Permits one null key and multiple null values.
+
+- **Not Synchronized**: HashMap is unsynchronized and not thread-safe. If concurrent access is required, consider using
+  ConcurrentHashMap.
