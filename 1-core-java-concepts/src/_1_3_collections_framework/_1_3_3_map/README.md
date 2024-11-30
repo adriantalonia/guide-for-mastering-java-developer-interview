@@ -176,3 +176,119 @@ to store data in the form of key-value pairs, where each key is unique and maps 
 
 - **Not Synchronized**: HashMap is unsynchronized and not thread-safe. If concurrent access is required, consider using
   ConcurrentHashMap.
+
+## How It Works
+
+- **Hashing**: Uses the hashCode() of keys to compute an index in an internal array where the key-value pair is stored.
+
+- **Buckets and Collisions**: Keys with the same hash code are stored in a bucket. In case of collisions (multiple keys
+  mapping to the same index), they are stored in a linked list or a balanced tree (since Java 8) within that bucket.
+
+## Constructors
+
+**Default Constructor:**
+
+```java
+HashMap<KeyType, ValueType> map = new HashMap<>();
+```
+
+**With Initial Capacity:**
+
+```java
+HashMap<KeyType, ValueType> map = new HashMap<>(
+int initialCapacity);
+```
+
+**With Initial Capacity and Load Factor:**
+
+```java
+HashMap<KeyType, ValueType> map = new HashMap<>(
+int initialCapacity, float loadFactor);
+```
+
+**From Another Map:**
+
+```java
+HashMap<KeyType, ValueType> map = new HashMap<>(Map < ? extends KeyType,?extends ValueType>anotherMap);
+```
+
+## Common Operations
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+
+        // Adding key-value pairs
+        map.put("Alice", 30);
+        map.put("Bob", 25);
+        map.put("Charlie", 35);
+
+        // Accessing a value by key
+        Integer ageBob = map.get("Bob");
+        System.out.println("Bob's age: " + ageBob);
+
+        // Checking for a key or value
+        boolean hasAlice = map.containsKey("Alice");
+        boolean hasAge40 = map.containsValue(40);
+        System.out.println("Contains key 'Alice': " + hasAlice);
+        System.out.println("Contains value 40: " + hasAge40);
+
+        // Removing a key-value pair
+        map.remove("Charlie");
+
+        // Iterating over keys, values, and entries
+        System.out.println("Keys: " + map.keySet());
+        System.out.println("Values: " + map.values());
+        System.out.println("Entries: " + map.entrySet());
+    }
+}
+```
+
+## Best Practices
+
+- **Choose Appropriate Initial Capacity**: Set an initial capacity that can accommodate expected entries to minimize
+  resizing.
+
+- **Understand Load Factor**: The default load factor is 0.75, balancing time and space cost. Adjust it if needed to
+  reduce collisions or memory usage.
+
+- **Implement hashCode() and equals()**: For custom key types, properly implement these methods to ensure correct
+  behavior and performance.
+
+- **Consider ConcurrentHashMap for Thread Safety**: Use ConcurrentHashMap if the map will be accessed by multiple
+  threads concurrently.
+
+## FAQs and Interview Questions
+
+1. **What is a HashMap in Java, and how does it differ from Hashtable?**
+
+   Answer: HashMap is an unsynchronized map that allows null keys and values, whereas Hashtable is synchronized and does
+   not allow nulls.
+
+2. **How does a HashMap handle collisions?**
+
+   Answer: It uses a linked list to store entries with the same hash code in a bucket, which turns into a balanced tree
+   if the bucket size exceeds a threshold (since Java 8).
+
+3. **What happens when the capacity of a HashMap is exceeded?**
+
+   Answer: The HashMap will automatically resize by doubling the capacity and rehashing the existing entries, which can
+   be
+   a costly operation.
+
+4. **Why is it important to override hashCode() and equals() for custom key types?**
+
+   Answer: Proper implementation ensures that keys are compared correctly for equality and are distributed effectively
+   across the hash table, minimizing collisions.
+
+5. **How can you make a HashMap thread-safe?**
+
+   Answer: Use Collections.synchronizedMap() to wrap the HashMap or use ConcurrentHashMap for better performance in
+   concurrent scenarios.
+
+--- 
+
