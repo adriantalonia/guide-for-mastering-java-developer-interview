@@ -8,11 +8,20 @@ keys with values, allowing efficient retrieval of values based on their keys.
 
 * [1.3.3 Map](#133-map)
     * [Key Characteristics](#key-characteristics)
+    * [Characteristics of a Map Interface](#characteristics-of-a-map-interface)
     * [How It Works](#how-it-works)
     * [Constructors](#constructors)
     * [Common Operations](#common-operations)
     * [Best Practices](#best-practices)
     * [FAQs and Interview Questions](#faqs-and-interview-questions)
+* [1.3.3.1 HashMap](#1331-hashmap)
+    * [Key Characteristics](#key-characteristics-1)
+    * [How It Works](#how-it-works-1)
+    * [Constructors](#constructors-1)
+    * [Common Operations](#common-operations-1)
+    * [Best Practices](#best-practices-1)
+    * [FAQs and Interview Questions](#faqs-and-interview-questions-1)
+* [1.3.3.2 TreeMap](#1332-treemap)
 
 <!-- TOC -->
 
@@ -291,4 +300,147 @@ public class HashMapExample {
    concurrent scenarios.
 
 --- 
+
+# 1.3.3.2 TreeMap
+
+TreeMap is a part of the Java Collections Framework and implements the Map interface and NavigableMap along with the
+AbstractMap class. It stores key-value pairs in a sorted order based on the keys, providing an efficient way to manage
+sorted data.
+
+## Key Characteristics
+
+- **Sorted Order**: TreeMap stores entries in a sorted order based on the natural ordering of keys or a comparator
+  provided at the time of map creation.
+
+- **NavigableMap**: Implements the NavigableMap interface, providing navigation methods such as lowerKey(), floorKey(),
+  ceilingKey(), and higherKey().
+
+- **Red-Black Tree**: Internally uses a Red-Black tree, a self-balancing binary search tree, ensuring log(n) time
+  complexity for basic operations like add, remove, and lookup.
+
+- **Not Synchronized**: TreeMap is not synchronized. If it will be accessed by multiple threads concurrently, it must be
+  synchronized externally.
+
+- **Nulls**: Does not allow null keys, but can store multiple null values.
+
+## How It Works
+
+- **Tree Structure**: Uses a Red-Black tree to maintain entries in sorted order. This structure allows for efficient
+  insertion, deletion, and lookup operations.
+
+- **Ordering**: Can order keys according to their natural order (if they implement Comparable) or according to a custom
+  Comparator provided at map creation.
+
+## Constructors
+
+**Default Constructor:**
+
+```java
+TreeMap<KeyType, ValueType> map = new TreeMap<>();
+```
+
+**With Comparator:**
+
+```java
+TreeMap<KeyType, ValueType> map = new TreeMap<>(Comparator < KeyType > comparator);
+```
+
+**From Another Map:**
+
+```java
+TreeMap<KeyType, ValueType> map = new TreeMap<>(Map < ? extends KeyType,?extends ValueType>anotherMap);
+```
+
+**From Another SortedMap:**
+
+```java
+TreeMap<KeyType, ValueType> map = new TreeMap<>(SortedMap < KeyType, ? extends ValueType>anotherSortedMap);
+```
+
+## Common Operations
+
+```java
+import java.util.TreeMap;
+import java.util.Map;
+
+public class TreeMapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> treeMap = new TreeMap<>();
+
+        // Adding key-value pairs
+        treeMap.put("Alice", 30);
+        treeMap.put("Bob", 25);
+        treeMap.put("Charlie", 35);
+
+        // Accessing a value by key
+        Integer ageBob = treeMap.get("Bob");
+        System.out.println("Bob's age: " + ageBob);
+
+        // Checking for a key or value
+        boolean hasAlice = treeMap.containsKey("Alice");
+        boolean hasAge40 = treeMap.containsValue(40);
+        System.out.println("Contains key 'Alice': " + hasAlice);
+        System.out.println("Contains value 40: " + hasAge40);
+
+        // Removing a key-value pair
+        treeMap.remove("Charlie");
+
+        // Iterating over keys, values, and entries
+        System.out.println("Keys: " + treeMap.keySet());
+        System.out.println("Values: " + treeMap.values());
+        System.out.println("Entries: " + treeMap.entrySet());
+
+        // NavigableMap features
+        String firstKey = ((TreeMap<String, Integer>) treeMap).firstKey();
+        String lastKey = ((TreeMap<String, Integer>) treeMap).lastKey();
+        System.out.println("First key: " + firstKey);
+        System.out.println("Last key: " + lastKey);
+    }
+}
+```
+
+## Best Practices
+
+- **Use for Sorted Data**: Prefer TreeMap when you need to store entries in a sorted order and perform range searches or
+  order-sensitive operations.
+
+- **Comparator Usage**: Use a custom comparator if you need a specific order other than the natural ordering of keys.
+
+- **Avoid Null Keys**: TreeMap does not allow null keys, so ensure that keys are always non-null.
+
+- **Synchronization**: If multiple threads will access the TreeMap concurrently, consider wrapping it with
+  Collections.synchronizedMap() or using another synchronization mechanism.
+
+## FAQs and Interview Questions
+
+1. **What is a TreeMap in Java, and how does it differ from a HashMap?**
+
+   Answer: TreeMap stores entries in a sorted order based on keys, whereas HashMap stores entries in an arbitrary order.
+   TreeMap uses a Red-Black tree, while HashMap uses a hash table.
+
+2. **How does TreeMap maintain order?**
+
+   Answer: TreeMap uses a Red-Black tree to maintain keys in a sorted order based on natural ordering or a custom
+   comparator.
+
+3. **Can TreeMap store null keys or values?**
+
+   Answer: TreeMap does not allow null keys but can store multiple null values.
+
+4. **What is the time complexity of basic operations in a TreeMap?**
+
+   Answer: The time complexity for basic operations like add, remove, and lookup is O(log n) due to the Red-Black tree
+   structure.
+
+5. **How can you synchronize access to a TreeMap?**
+
+   Answer: Use Collections.synchronizedMap() to create a synchronized map or externally synchronize access to the
+   TreeMap if it will be accessed by multiple threads concurrently.
+
+--- 
+
+# 1.3.3.3 LinkedHashMap
+
+
+
 
