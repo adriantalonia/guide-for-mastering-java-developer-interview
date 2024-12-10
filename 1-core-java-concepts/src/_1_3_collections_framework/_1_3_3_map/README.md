@@ -22,6 +22,18 @@ keys with values, allowing efficient retrieval of values based on their keys.
     * [Best Practices](#best-practices-1)
     * [FAQs and Interview Questions](#faqs-and-interview-questions-1)
 * [1.3.3.2 TreeMap](#1332-treemap)
+    * [Key Characteristics](#key-characteristics-2)
+    * [How It Works](#how-it-works-2)
+    * [Constructors](#constructors-2)
+    * [Common Operations](#common-operations-2)
+    * [Best Practices](#best-practices-2)
+    * [FAQs and Interview Questions](#faqs-and-interview-questions-2)
+* [1.3.3.3 LinkedHashMap](#1333-linkedhashmap)
+    * [Key Characteristics](#key-characteristics-3)
+    * [How It Works](#how-it-works-3)
+    * [Constructors](#constructors-3)
+    * [Common Operations](#common-operations-3)
+    * [Best Practices](#best-practices-3)
 
 <!-- TOC -->
 
@@ -441,6 +453,160 @@ public class TreeMapExample {
 
 # 1.3.3.3 LinkedHashMap
 
+LinkedHashMap is a part of the Java Collections Framework and extends HashMap. It retains all functionalities of a
+HashMap but adds the capability to maintain a predictable iteration order, either based on insertion order or access
+order.
 
+## Key Characteristics
 
+- **Order Maintenance:**
 
+    - **Insertion Order:** By default, LinkedHashMap maintains elements in the order they were inserted.
+    - **Access Order:** Can optionally maintain order based on the last access to elements if specified during
+      construction.
+
+- **Hash Table with Linked List:**
+
+    - Combines a hash table with a doubly-linked list, providing efficient iteration order while maintaining the
+      performance of a hash table for lookup.
+
+- **Performance:**
+
+    - Retains the O(1) time complexity for basic operations like add, remove, and lookup, similar to HashMap.
+
+- **Nulls Allowed:**
+
+    - Supports null keys and values, similar to HashMap.
+
+- **Not Synchronized:**
+
+    - **LinkedHashMap** is not synchronized. For concurrent access, it must be synchronized externally.
+
+## How It Works
+
+- **Doubly-Linked List:**
+
+    - Each entry in the map is a node in a doubly-linked list, which maintains the iteration order.
+
+- **Hashing:**
+
+    - Utilizes hashing for quick access, insertion, and deletion, like HashMap.
+
+## Constructors
+
+1. **Default Constructor:**
+
+```java
+LinkedHashMap<KeyType, ValueType> map = new LinkedHashMap<>();
+```
+
+2. **With initial capacity and Load Factor:**
+
+```java
+LinkedHashMap<KeyType, ValueType> map = new LinkedHashMap<>(
+int initialCapacity, float loadFactor);
+```
+
+3. **With initial capacity, Load Factor and Access Order:**
+
+```java
+LinkedHashMap<KeyType, ValueType> map = new LinkedHashMap<>(
+int initialCapacity, float loadFactor, boolean accessOrder);
+```
+
+4. **From Another Map:**
+
+```java
+LinkedHashMap<KeyType, ValueType> map = new LinkedHashMap<>(Map < ? extends KeyType,?extends ValueType>anotherMap);
+```
+
+## Common Operations
+
+```java
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class LinkedHashMapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
+
+        // Adding key-value pairs
+        linkedHashMap.put("Alice", 30);
+        linkedHashMap.put("Bob", 25);
+        linkedHashMap.put("Charlie", 35);
+
+        // Accessing a value by key
+        Integer ageBob = linkedHashMap.get("Bob");
+        System.out.println("Bob's age: " + ageBob);
+
+        // Checking for a key or value
+        boolean hasAlice = linkedHashMap.containsKey("Alice");
+        boolean hasAge40 = linkedHashMap.containsValue(40);
+        System.out.println("Contains key 'Alice': " + hasAlice);
+        System.out.println("Contains value 40: " + hasAge40);
+
+        // Removing a key-value pair
+        linkedHashMap.remove("Charlie");
+
+        // Iterating over keys, values, and entries
+        System.out.println("Keys: " + linkedHashMap.keySet());
+        System.out.println("Values: " + linkedHashMap.values());
+        System.out.println("Entries: " + linkedHashMap.entrySet());
+    }
+}
+```
+
+**Output:**
+
+```
+Bob's age: 25
+Contains key 'Alice': true
+Contains value 40: false
+Keys: [Alice, Bob]
+Values: [30, 25]
+Entries: [Alice=30, Bob=25]
+```
+
+## Best Practices
+
+- **Use for Predictable Iteration Order:**
+
+    - Leverage LinkedHashMap when the order of traversal matters, such as maintaining insertion order or access order.
+
+- **LRU Caching:**
+
+    - Set accessOrder to true to implement LRU (Least Recently Used) caches effectively.
+
+- **Synchronization:**
+
+    - For concurrent access, wrap the LinkedHashMap using Collections.synchronizedMap() or synchronize access
+      externally.
+
+- **Memory Consideration:**
+
+    - Be aware of the additional memory overhead due to the linked list structure, compared to HashMap.
+
+## FAQs and Interview Questions
+
+1) **What is a LinkedHashMap and how does it differ from a HashMap?**
+
+   Answer: LinkedHashMap maintains a predictable iteration order (insertion or access order), whereas HashMap does not
+   guarantee any order.
+
+2) **How does LinkedHashMap maintain order?**
+
+   Answer: It uses a doubly-linked list to maintain the order of entries, enabling predictable iteration order.
+
+3) **Can LinkedHashMap store null keys or values?**
+
+   Answer: Yes, LinkedHashMap allows one null key and multiple null values, similar to HashMap.
+
+4) **What is the difference between insertion order and access order in LinkedHashMap?**
+
+   Answer: Insertion order maintains the sequence of elements as they were inserted, while access order changes the
+   sequence based on elements accessed, useful for caching scenarios.
+
+5) **How can you synchronize access to a LinkedHashMap?**
+
+   Answer: Use Collections.synchronizedMap() to create a synchronized map or externally synchronize access if it will be
+   accessed by multiple threads concurrently.
