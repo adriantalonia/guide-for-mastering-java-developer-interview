@@ -102,4 +102,21 @@
 - Natural ordering with Comparable
 - Custom ordering with Comparator
 
+## [1.4 Exception Handling](src/_1_4_exception_handling/README.md)
+
+ **1.4.1 Try-Catch-Finally**
+
+- Basic try-catch block
+- finally block usage
+
+ **1.4.2 Custom Exceptions**
+
+- Creating user-defined exceptions
+- Throwing exceptions
+
+ **1.4.3 Checked vs Unchecked Exceptions**
+
+- Differences and examples
+- Handling checked exceptions
+
 ---
