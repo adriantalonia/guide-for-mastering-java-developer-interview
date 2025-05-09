@@ -104,19 +104,57 @@
 
 ## [1.4 Exception Handling](src/_1_4_exception_handling/README.md)
 
- **1.4.1 Try-Catch-Finally**
+**1.4.1 Try-Catch-Finally**
 
 - Basic try-catch block
 - finally block usage
 
- **1.4.2 Custom Exceptions**
+**1.4.2 Custom Exceptions**
 
 - Creating user-defined exceptions
 - Throwing exceptions
 
- **1.4.3 Checked vs Unchecked Exceptions**
+**1.4.3 Checked vs Unchecked Exceptions**
 
 - Differences and examples
 - Handling checked exceptions
 
----
+## [1.5 Java I/O](src/_1_5_Java_I_O/README.md)
+
+**1.5.1 File Handling**
+
+- File class
+- Reading and writing files
+
+**1.5.2 Streams (Byte and Character Streams)**
+
+- Byte streams (InputStream, OutputStream)
+- Character streams (Reader, Writer)
+- Buffered streams (BufferedReader, BufferedWriter)
+
+**1.5.2 Serialization and Deserialization**
+
+- Serializable interface
+- ObjectInputStream and ObjectOutputStream
+
+## [1.6 Concurrency](src/_1_6_concurrency/README.md)
+
+**1.6.1 Threads and Runnable**
+
+- Creating threads (Thread class, Runnable interface)
+- Thread lifecycle
+
+**1.6.2 Synchronization**
+
+- synchronized keyword
+- Locks and intrinsic locks
+
+**1.6.3 Executors and Thread Pools**
+
+- Executor framework
+- FixedThreadPool, CachedThreadPool
+
+**1.6.4 Concurrency Utilities**
+
+- java.util.concurrent package
+- CountDownLatch, CyclicBarrier, Semaphore, etc.
